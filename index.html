@@ -1,0 +1,1111 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>El viaje a la Tierra Prometida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Almendra:ital,wght@0,400;0,700;1,400&family=Alegreya+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#CFC09B; --panel:#E6D9B8; --panel2:#D8C89F; --ink:#2A1C0F; --muted:#6B5535; --line:#A38D5F;
+  --gold:#7C4F0E; --gold-ink:#FFF4D9; --good:#2F7A3F; --bad:#A8321F; --ring:#7C4F0E;
+  --jer:#C9962F; --des:#B5532A; --abu:#3E8A5C; --mar:#1F6A94; --tie:#D0503F;
+  --f-display:'Almendra',Georgia,'Times New Roman',serif;
+  --f-body:'Alegreya Sans',system-ui,'Segoe UI',Roboto,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#120E0B; --panel:#1D1712; --panel2:#2A2018; --ink:#F2E7CE; --muted:#B8A98B; --line:#4B3B29;
+    --gold:#D9A441; --gold-ink:#2A1A05; --good:#7FD08B; --bad:#F2917F; --ring:#D9A441; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#120E0B; --panel:#1D1712; --panel2:#2A2018; --ink:#F2E7CE; --muted:#B8A98B; --line:#4B3B29;
+  --gold:#D9A441; --gold-ink:#2A1A05; --good:#7FD08B; --bad:#F2917F; --ring:#D9A441; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.45 var(--f-body);min-height:100vh}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.28;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23n%29' opacity='.6'/%3E%3C/svg%3E")}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;margin:0}
+.muted{color:var(--muted)}
+
+/* botones */
+.btn{border:0;border-radius:12px;padding:12px 20px;font-weight:800;cursor:pointer;background:var(--gold);color:var(--gold-ink);transition:transform .12s,filter .12s}
+.btn:hover:not(:disabled){filter:brightness(1.08);transform:translateY(-1px)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.small{padding:8px 14px;font-size:15px}
+.btn.big{padding:16px 28px;font-size:19px}
+
+/* configuración */
+.setup{max-width:860px;margin:0 auto;padding:28px 18px 60px}
+.route{display:flex;align-items:flex-start;justify-content:space-between;position:relative;margin:8px 0 28px;padding:0 6px}
+.route::before{content:"";position:absolute;left:36px;right:36px;top:26px;height:6px;border-radius:6px;
+  background:linear-gradient(90deg,var(--jer) 0 20%,var(--des) 20% 40%,var(--abu) 40% 60%,var(--mar) 60% 80%,var(--tie) 80%)}
+.route div{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;width:20%;text-align:center;font-weight:700;font-size:15px}
+.route i{font-style:normal;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-size:26px;background:var(--panel);border:4px solid var(--c)}
+.setup h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:0 0 6px;color:var(--gold)}
+.era{font:italic 400 21px var(--f-display);color:var(--muted);margin:0 0 14px}
+.setup .lead{font-size:19px;color:var(--muted);max-width:56ch;margin:0 0 26px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:8px 0 18px}
+.seg button{border:0;background:transparent;padding:10px 18px;font-weight:800;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--gold);color:var(--gold-ink)}
+.prow{display:grid;grid-template-columns:auto 1fr minmax(160px,220px);gap:10px;align-items:center;padding:10px;border-radius:14px;background:var(--panel);border:1px solid var(--line);margin-bottom:10px}
+.prow .dot{width:42px;height:42px;border-radius:50%;border:4px solid var(--c);background:#F3E6C4;display:grid;place-items:center;font-size:22px}
+.prow input,.prow select{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+.prow .rd{grid-column:2/4;font-size:15px;color:var(--muted);margin-top:-2px}
+.setup .actions-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.note{font-size:15px;color:var(--muted);margin-top:18px;max-width:64ch}
+@media (max-width:560px){.prow{grid-template-columns:auto 1fr}.prow select{grid-column:1/3}.prow .rd{grid-column:1/3}}
+
+/* juego */
+.game{max-width:1560px;margin:0 auto;padding:14px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.top{padding-bottom:10px;border-bottom:1px solid var(--line)}
+.top h2{font-size:clamp(22px,3vw,32px);color:var(--gold)}
+.top .tools{display:flex;gap:8px;flex-wrap:wrap}
+.main{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:14px;align-items:start}
+@media (max-width:1020px){.main{grid-template-columns:minmax(0,1fr)}}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:var(--panel);border:1px solid var(--line);font-weight:700;font-size:14px}
+.pill i{width:12px;height:12px;border-radius:50%;background:var(--c)}
+.boardwrap{background:var(--panel);border:2px solid var(--gold);border-radius:14px;padding:12px;overflow-x:auto;box-shadow:inset 0 0 0 4px var(--panel),inset 0 0 0 5px color-mix(in srgb,var(--gold) 55%,transparent),0 12px 30px rgba(0,0,0,.35)}
+#board{display:block;width:100%;min-width:760px;height:auto}
+.keys{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:14px;color:var(--muted)}
+.keys span{display:inline-flex;align-items:center;gap:6px}
+.keys i{width:12px;height:12px;border-radius:50%;background:var(--c);display:inline-block}
+.maplbl{font:italic 400 15px var(--f-display);fill:var(--ink);opacity:.5;text-anchor:middle;letter-spacing:.05em}
+.mappin{font:italic 400 15px var(--f-display);fill:var(--ink);opacity:.85}
+.plq{fill:var(--panel);stroke:var(--gold);stroke-width:1.5}
+.lbl{font:700 13px var(--f-body);fill:var(--ink);text-anchor:middle}
+.tok{transition:transform .3s ease}
+.tok .hop{filter:drop-shadow(0 2px 3px rgba(0,0,0,.55))}
+.tok .ring{transform-origin:center;transform-box:fill-box;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.35);opacity:.2}}
+
+.side{display:flex;flex-direction:column;gap:12px}
+.turn{border-top:5px solid var(--pc,var(--gold))}
+.turnhead{display:flex;align-items:center;gap:12px}
+.tk{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:29px;background:#F3E6C4;border:5px solid var(--pc)}
+.tname{font:700 24px var(--f-display)}
+.dockrow{display:flex;gap:14px;align-items:center;margin:14px 0 10px;min-height:96px}
+.dockrow p{margin:0 0 6px}
+#hint{font-weight:700}
+#shipreq{font-size:14px;color:var(--muted)}
+.actions{display:flex;flex-direction:column;gap:8px}
+.offer{display:flex;gap:8px;align-items:center;font-size:15px}
+.pl{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:10px 12px}
+.pl.active{border-color:var(--pc)}
+.pl.done{opacity:.8}
+.plh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.plh .dot{width:36px;height:36px;border-radius:50%;background:#F3E6C4;border:4px solid var(--pc);display:grid;place-items:center;font-size:18px}
+.plh b{font-size:17px}
+.plh small{color:var(--muted);margin-left:auto;font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:4px 6px;font-size:15px;font-weight:700}
+.stats span{display:inline-flex;gap:4px;align-items:center;padding:1px 4px;border-radius:6px}
+.stats .up{animation:up .9s}
+.stats .dn{animation:dn .9s}
+@keyframes up{0%{background:var(--good);color:#fff}100%{background:transparent}}
+@keyframes dn{0%{background:var(--bad);color:#fff}100%{background:transparent}}
+.flags{margin-top:6px;font-size:16px;display:flex;gap:8px}
+.prog{height:5px;border-radius:5px;background:var(--panel2);margin-top:8px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--pc);transition:width .4s}
+#log{list-style:none;margin:8px 0 0;padding:0;max-height:190px;overflow:auto;font-size:15px}
+#log li{padding:4px 0;border-bottom:1px solid var(--line)}
+.panel h3{font-size:20px}
+
+/* dado */
+.die-wrap{width:var(--s);height:var(--s);perspective:700px;display:inline-block;flex:none;filter:drop-shadow(0 8px 8px rgba(0,0,0,.4))}
+.tilt{width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(-16deg) rotateY(18deg)}
+.die{width:100%;height:100%;position:relative;transform-style:preserve-3d}
+.face{position:absolute;inset:0;border-radius:calc(var(--s)*.17);background:linear-gradient(145deg,#F6EBCB,#D6C497);display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);padding:calc(var(--s)*.13);box-shadow:inset 0 0 calc(var(--s)*.14) rgba(90,60,10,.4);backface-visibility:hidden}
+.pip{place-self:center;width:72%;height:72%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#4B3A27,#150E06)}
+.f1 .pip{background:radial-gradient(circle at 35% 30%,#E0584A,#8E1B12)}
+.f1{transform:translateZ(calc(var(--s)/2))}
+.f6{transform:rotateY(180deg) translateZ(calc(var(--s)/2))}
+.f3{transform:rotateY(90deg) translateZ(calc(var(--s)/2))}
+.f4{transform:rotateY(-90deg) translateZ(calc(var(--s)/2))}
+.f5{transform:rotateX(90deg) translateZ(calc(var(--s)/2))}
+.f2{transform:rotateX(-90deg) translateZ(calc(var(--s)/2))}
+
+/* cartas */
+.overlay{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:14px;background:rgba(4,8,18,.74);backdrop-filter:blur(3px);overflow:auto;animation:fadein .25s}
+.overlay.out{opacity:0;transition:opacity .2s}
+@keyframes fadein{from{opacity:0}}
+.card3d{perspective:1400px;width:min(390px,94vw);margin:auto}
+.cardinner{position:relative;transform-style:preserve-3d;transition:transform .85s cubic-bezier(.2,.7,.2,1)}
+.cardinner.flipped{transform:rotateY(180deg)}
+.back,.front{border-radius:22px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.back{position:absolute;inset:0;min-height:420px;display:grid;place-items:center;align-content:center;gap:14px;
+  background:radial-gradient(circle,var(--cc) 0 46px,transparent 47px),repeating-conic-gradient(from 45deg,#2A1D12 0 25%,#1A130D 0 50%) 0 0/38px 38px;
+  box-shadow:inset 0 0 0 5px #1A130D,inset 0 0 0 7px rgba(226,178,76,.65),0 20px 50px rgba(0,0,0,.5)}
+.medal{font-size:50px;margin-top:-62px;position:relative;top:0}
+.backname{font:700 22px var(--f-display);color:#F5EFE0;background:#1A130D;padding:4px 16px;border-radius:999px;border:1px solid rgba(226,178,76,.6);margin-top:62px}
+.front{transform:rotateY(180deg);background:#1A130D url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23n%29' opacity='.6'/%3E%3C/svg%3E");background-blend-mode:soft-light;color:#F3EFE4;padding:0 0 18px;overflow:hidden;
+  box-shadow:inset 0 0 0 5px #1A130D,inset 0 0 0 7px rgba(226,178,76,.65),0 20px 50px rgba(0,0,0,.5)}
+.cf-top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:18px 24px 12px;background:linear-gradient(180deg,var(--cc),transparent);font-weight:800;font-size:15px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.cf-top .ref{font-style:italic;font-weight:500}
+.cf-icon{font-size:58px;text-align:center;margin:2px 0 0;filter:drop-shadow(0 4px 6px rgba(0,0,0,.5))}
+.front h3{text-align:center;font-size:27px;line-height:1.1;padding:4px 22px 0;color:#FFF6DD}
+.cf-txt{padding:10px 26px 0;margin:0;font-size:17.5px;color:#DCD6C6}
+.cf-note{padding:8px 26px 0;margin:0;font-size:13.5px;color:#B8A98B;font-style:italic}
+.cf-result{margin:10px 22px 0;padding:10px 14px;border-radius:12px;background:#2C2014;font-weight:700;color:#FFF6DD}
+.cf-roll{padding:12px 22px 0}
+.rtop{display:flex;align-items:center;gap:16px;margin-bottom:10px}
+.rtop .rbtn{display:flex;flex-direction:column;gap:6px;font-weight:700}
+.rt{width:100%;border-collapse:collapse;font-size:14.5px}
+.rt td{padding:5px 8px;border-bottom:1px solid #3A2B1A;vertical-align:top}
+.rt td:first-child{width:46px;font-weight:800;color:#E2B24C;white-space:nowrap}
+.rt tr.hit td{background:#E2B24C;color:#2A1D00}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:14px 20px 0}
+.chip{display:inline-flex;gap:6px;align-items:center;padding:5px 12px;border-radius:999px;font-weight:800;font-size:15px;animation:pop .35s both}
+.chip.gain{background:#12392A;color:#7DE3A8}
+.chip.loss{background:#43191B;color:#FF9D96}
+.chip.info{background:#3A2C1B;color:#E6D6B3}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+.cf-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 20px 0}
+.cf-actions .btn{background:#E2B24C;color:#2A1D00}
+.cf-actions .btn.ghost{background:transparent;color:#F3EFE4;border:1px solid #5A4630}
+
+/* fin */
+.results{width:min(520px,94vw);margin:auto;background:#1A130D;color:#F3EFE4;border-radius:22px;padding:24px;box-shadow:inset 0 0 0 6px #1A130D,inset 0 0 0 8px rgba(226,178,76,.65),0 20px 50px rgba(0,0,0,.5);position:relative;overflow:hidden}
+.results h2{font-size:34px;text-align:center;color:#FFF6DD}
+.results p.sub{text-align:center;color:#CDBF9E;margin:6px 0 16px}
+.rank{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;padding:10px 12px;border-radius:14px;background:#2A1D12;margin-bottom:8px}
+.rank.first{background:#3A2E0E;box-shadow:inset 0 0 0 2px #E2B24C}
+.rank .n{font:700 24px var(--f-display);color:#E2B24C}
+.rank small{display:block;color:#B8A98B;font-size:13px}
+.rank .pt{font:700 26px var(--f-display);color:#FFF6DD}
+.results .actions-row{display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.results .btn{background:#E2B24C;color:#2A1D00}
+.results .btn.ghost{background:transparent;color:#F3EFE4;border:1px solid #5A4630}
+.confetti{position:absolute;top:-14px;width:9px;height:14px;border-radius:2px;animation:fall linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(760px) rotate(720deg);opacity:.9}}
+
+/* reglas */
+.rules{width:min(620px,94vw);margin:auto;background:var(--panel);color:var(--ink);border-radius:20px;padding:22px 24px;border:1px solid var(--line)}
+.rules h2{font-size:30px;margin-bottom:8px}
+.rules h3{font-size:20px;margin:16px 0 4px}
+.rules p,.rules li{margin:4px 0}
+.rules ul{padding-left:20px;margin:4px 0}
+.rules .actions-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+#toasts{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:80;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+.toast{background:#1A130D;color:#F3EFE4;border:1px solid rgba(226,178,76,.6);padding:9px 16px;border-radius:999px;font-weight:700;animation:pop .3s both;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<section id="setup" class="setup"></section>
+
+<section id="game" class="game" hidden>
+  <header class="top">
+    <h2>El viaje a la Tierra Prometida</h2>
+    <div class="tools">
+      <button class="btn ghost small" id="bRules">Reglas</button>
+      <button class="btn ghost small" id="bTheme">Tema: noche</button>
+      <button class="btn ghost small" id="bMaps" aria-pressed="true">Mapas: sí</button>
+      <button class="btn ghost small" id="bSound" aria-pressed="false">Sonido: sí</button>
+      <button class="btn ghost small" id="bNew">Nueva partida</button>
+    </div>
+  </header>
+  <div class="main">
+    <div class="boardcol">
+      <div class="legend" id="legend"></div>
+      <div class="boardwrap" id="boardwrap"><svg id="board" viewBox="0 0 1000 740" role="img" aria-label="Tablero del viaje"></svg></div>
+      <div class="keys" id="keys"></div>
+    </div>
+    <aside class="side">
+      <div class="panel turn" id="turn">
+        <div class="turnhead"><div class="tk" id="tk"></div><div><div class="tname" id="tname"></div><div class="muted" id="trole"></div></div></div>
+        <div class="dockrow"><div id="dockdie"></div><div><p id="hint"></p><p id="shipreq"></p></div></div>
+        <div class="actions" id="actions"></div>
+      </div>
+      <div id="players"></div>
+      <div class="panel"><h3>Bitácora</h3><ul id="log"></ul></div>
+    </aside>
+  </div>
+</section>
+<div id="toasts" aria-live="polite"></div>
+
+<script>
+(()=>{
+'use strict';
+/* ---------- utilidades ---------- */
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=(s,e=document)=>e.querySelector(s);
+const el=(t,c,h)=>{const n=document.createElement(t);if(c)n.className=c;if(h!=null)n.innerHTML=h;return n;};
+let RUN=0;
+const sleep=ms=>{const id=RUN;return new Promise(r=>setTimeout(()=>{if(id===RUN)r();},RM?Math.min(ms,50):ms));};
+const rnd=n=>1+Math.floor(Math.random()*n);
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const click=b=>new Promise(r=>b.addEventListener('click',r,{once:true}));
+const plural=(n,a,b)=>n===1?a:b;
+
+/* ---------- sonido ---------- */
+let AC=null,MUTE=false;
+function tone(f,d,type='sine',v=.04,at=0){
+  if(MUTE)return;
+  try{
+    AC=AC||new (window.AudioContext||window.webkitAudioContext)();
+    const t=AC.currentTime+at,o=AC.createOscillator(),g=AC.createGain();
+    o.type=type;o.frequency.setValueAtTime(f,t);
+    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+d);
+    o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.02);
+  }catch(e){}
+}
+function sfx(k){
+  if(MUTE)return;
+  if(k==='roll'){for(let i=0;i<9;i++)tone(170+Math.random()*230,.06,'square',.022,i*.12);}
+  else if(k==='step')tone(520,.06,'triangle',.04);
+  else if(k==='card'){tone(330,.12,'triangle',.05);tone(440,.14,'triangle',.04,.08);}
+  else if(k==='good')[523,659,784].forEach((f,i)=>tone(f,.18,'sine',.05,i*.09));
+  else if(k==='bad')[330,262,196].forEach((f,i)=>tone(f,.2,'sawtooth',.03,i*.1));
+  else if(k==='win')[523,659,784,1047,1319].forEach((f,i)=>tone(f,.28,'triangle',.05,i*.12));
+}
+
+/* ---------- datos ---------- */
+const ST={fe:['❤️','Fe'],food:['🍖','Alimentos'],res:['🧺','Recursos'],wood:['🪵','Madera'],tool:['🔨','Herramientas'],unity:['👨‍👩‍👧‍👦','Unidad'],exp:['⭐','Experiencia']};
+const ORDER=['fe','food','res','wood','tool','unity','exp'];
+const COLORS=['#E4572E','#17BEBB','#9B5DE5','#8AC926','#F15BB5','#4CC9F0'];
+const ROLES=[
+ {id:'nefi',n:'Arco de Nefi',e:'🏹',d:'+1 Fe al inicio. Más suerte al fabricar un arco nuevo.',st:{fe:1}},
+ {id:'espada',n:'Espada de Labán',e:'🗡️',d:'+2 Experiencia al inicio.',st:{exp:2}},
+ {id:'zoram',n:'Llaves de Zoram',e:'🗝️',d:'+1 Herramienta y +1 Madera al inicio.',st:{tool:1,wood:1}},
+ {id:'sariah',n:'Cántaro de Saríah',e:'🏺',d:'+2 Alimentos al inicio.',st:{food:2}},
+ {id:'oro',n:'Oro de Lehi',e:'🪙',d:'+3 Recursos al inicio.',st:{res:3}},
+ {id:'cuerda',n:'Cuerda de Nefi',e:'🪢',d:'+2 Unidad al inicio.',st:{unity:2}},
+];
+const REGIONS=[
+ {id:'jer',n:'Jerusalén',c:'#C9962F',a:0,b:6,e:'🏛️'},
+ {id:'des',n:'El desierto',c:'#B5532A',a:7,b:21,e:'🏜️'},
+ {id:'abu',n:'Tierra de Abundancia',c:'#3E8A5C',a:22,b:28,e:'🌴'},
+ {id:'mar',n:'El océano',c:'#1F6A94',a:29,b:41,e:'🌊'},
+ {id:'tie',n:'Tierra Prometida',c:'#D0503F',a:42,b:42,e:'🏝️'},
+];
+const CATS={
+ dir:{n:'Dirección',i:'🧭',c:'#D9A441'},des:{n:'Desafío',i:'⚔️',c:'#C9514A'},fe:{n:'Fe',i:'🙏',c:'#8F83E0'},
+ mur:{n:'Murmuración',i:'🔥',c:'#E0703A'},con:{n:'Construcción',i:'🔨',c:'#A9743F'},oce:{n:'Océano',i:'🌊',c:'#2BA5C9'},lug:{n:'Evento',i:'📍',c:'#B8892E'}
+};
+const T=(type,name,icon,hito=false)=>({type,name,icon,hito});
+const TRACK=[
+ T('start','Jerusalén','🏛️',true),T('lehi','','📣'),T('anger','','😠'),T('riches','','💰'),T('dir','','🧭'),T('camp','','⛺'),
+ T('salida','Salida de Jerusalén','🚪',true),T('des','','⚔️'),T('river','Río de Lemuel','🌊',true),T('valle','','🏞️'),T('mur','','🔥'),T('rev','','🧭'),T('camp','','⛺'),
+ T('plates','Planchas de bronce','📜',true),T('strength','','💪'),T('ismael','Ismael y su familia','👪',true),T('mur','','🔥'),
+ T('tree','Árbol de la vida','🌳',true),T('forest','','🪵'),T('liahona','La Liahona','🧭',true),T('bow','El arco se rompe','🏹',true),
+ T('death','Muerte de Ismael','⚰️',true),T('abund','Tierra de Abundancia','🌴',true),T('ore','','⛏️'),T('forest','','🪵'),T('mock','','😒'),
+ T('food','','🍯'),T('tool','','🔨'),T('yard','El astillero','🚢',true),
+ T('ocean','','🌊'),T('ocean','','🌊'),T('hunt','','🏹'),T('ocean','','🌊'),T('lia2','','🧭'),T('ocean','','🌊'),
+ T('storm','Gran tormenta','⛈️',true),T('ocean','','🌊'),T('pray','','🙏'),T('ocean','','🌊'),T('rebel','','😡'),T('ocean','','🌊'),T('fe','','🙏'),
+ T('land','Tierra Prometida','🏝️',true)
+];
+const LAST=TRACK.length-1,PLATES_AT=13,YARD_AT=28;
+const regionOf=i=>REGIONS.find(r=>i>=r.a&&i<=r.b);
+const NODECOL={gain:'#4FBF86',bad:'#E0605A',dir:'#E2B24C',fe:'#9A8CF0',oce:'#3AB0D8',neu:'#9AA8C2'};
+const TCAT={camp:'gain',valle:'gain',strength:'gain',forest:'gain',ore:'gain',tool:'gain',food:'gain',hunt:'gain',lia2:'dir',riches:'gain',
+  anger:'bad',des:'bad',mur:'bad',mock:'bad',rebel:'bad',death:'bad',bow:'bad',dir:'dir',rev:'dir',fe:'fe',pray:'fe',tree:'fe',ocean:'oce',storm:'oce',lehi:'neu',start:'neu'};
+
+/* mazos */
+const DECKS={
+ dir:[
+  {t:'Lehi ve una columna de fuego',x:'Una visión sobre un pueblo que debe arrepentirse. Tu fe se fortalece.',r:'1 Nefi 1',fx:{fe:1,exp:1}},
+  {t:'El Señor manda salir',x:'Recibes la instrucción de partir sin demora. Avanzas con premura.',r:'1 Nefi 2',fx:{move:2}},
+  {t:'Una guía en el camino',x:'Recibes instrucciones claras sobre qué rumbo tomar.',r:'1 Nefi 16',fx:{move:1,exp:1}},
+  {t:'Iré y haré',x:'Obedeces sin dudar, confiando en que el Señor prepara el camino.',r:'1 Nefi 3',fx:{exp:2}},
+  {t:'El Señor prepara el camino',x:'Encuentras provisiones que no esperabas.',r:'1 Nefi 17',fx:{food:1,fe:1}},
+  {t:'Revelación a Nefi',x:'Recibes dirección y energía para continuar. Tira otra vez el dado.',r:'1 Nefi 18',fx:{again:true}},
+  {t:'Recuerda las promesas',x:'Repasas lo que el Señor ha prometido a tu familia.',r:'1 Nefi 2',fx:{fe:1,unity:1}},
+  {t:'Instrucciones del Señor',x:'Sabes exactamente qué hacer a continuación.',r:'1 Nefi 17',fx:{res:1,exp:1}},
+ ],
+ fe:[
+  {t:'Oración',x:'Clamas al Señor con todo tu corazón y recuperas fuerzas.',r:'1 Nefi 2',fx:{fe:2}},
+  {t:'Fortaleza',x:'Encuentras valor donde no lo había.',r:'1 Nefi 4',fx:{fe:1,unity:1}},
+  {t:'Ayuda divina',x:'Llega ayuda justo cuando más la necesitabas.',r:'1 Nefi 17',fx:{food:1,res:1}},
+  {t:'Diligencia',x:'Trabajas con constancia y se nota.',r:'1 Nefi 17',fx:{res:1,exp:1}},
+  {t:'El Señor fortalece a Nefi',x:'Nefi recibe poder para hacer lo que se le manda.',r:'1 Nefi 17',fx:{fe:2}},
+  {t:'Ayuno y oración',x:'Entregas un alimento y recibes mucho más a cambio.',r:'1 Nefi 2',fx:{food:-1,fe:3}},
+  {t:'Testimonio compartido',x:'Hablas de lo que sabes y la familia se une.',r:'1 Nefi 5',fx:{unity:1,fe:1}},
+  {t:'Paz en el corazón',x:'Una calma profunda te acompaña en medio de la prueba.',r:'1 Nefi 18',fx:{unity:1,fe:1}},
+ ],
+ des:[
+  {t:'Escasez de alimentos',x:'Las provisiones se agotan más rápido de lo previsto.',r:'1 Nefi 16',fx:{food:-2}},
+  {t:'Camino difícil',x:'El terreno es duro y pierdes ritmo.',r:'1 Nefi 16',fx:{move:-2}},
+  {t:'Tormenta de arena',x:'Debes refugiarte y esperar a que pase.',r:'1 Nefi 16',fx:{skip:1}},
+  {t:'Un recurso se pierde',x:'Algo importante queda atrás en el camino.',r:'1 Nefi 16',fx:{res:-1}},
+  {t:'Cansancio',x:'El agotamiento golpea el ánimo de la familia.',r:'1 Nefi 16',fx:{unity:-1}},
+  {t:'Dudas',x:'Por un momento te preguntas si todo valdrá la pena.',r:'1 Nefi 3',fx:{fe:-1}},
+  {t:'Se agota el agua',x:'Racionas lo poco que queda; la tensión crece.',r:'1 Nefi 16',fx:{food:-1,unity:-1}},
+  {t:'Camino peligroso',x:'El sendero se estrecha. Tira el dado para ver cómo sales.',r:'1 Nefi 16',table:[
+    {v:[1],x:'Pierdes recursos en el camino.',fx:{res:-2}},
+    {v:[2],x:'Te lastimas y pierdes ánimo.',fx:{fe:-1,res:-1}},
+    {v:[3,4],x:'Logras pasar sin problemas.',fx:{}},
+    {v:[5],x:'Descubres un atajo.',fx:{move:1}},
+    {v:[6],x:'Ayudas a otros y aprendes mucho.',fx:{exp:2}}]},
+ ],
+ mur:[
+  {t:'¿Por qué tenemos que hacer esto?',x:'Las quejas se contagian por el campamento.',r:'1 Nefi 2',fx:{fe:-1}},
+  {t:'Queremos volver a Jerusalén',x:'Lamán y Lemuel exigen regresar. Retrocedes 3 espacios.',r:'1 Nefi 2',fx:{move:-3}},
+  {t:'Lamán y Lemuel se rebelan',x:'La rebelión detiene a toda la caravana. Todos pierden 1 turno.',r:'1 Nefi 3',fx:{allSkip:true}},
+  {t:'Nefi ora',x:'Nefi pide ayuda al Señor y todo se aclara. Tira nuevamente el dado.',r:'1 Nefi 2',fx:{again:true}},
+  {t:'El Señor fortalece a Nefi',x:'Nefi recibe fuerzas para seguir guiando a su familia.',r:'1 Nefi 17',fx:{fe:2}},
+  {t:'Palabras duras',x:'Una discusión deja heridas en la familia.',r:'1 Nefi 7',fx:{unity:-1}},
+  {t:'Nefi habla con mansedumbre',x:'Una respuesta amable calma los ánimos.',r:'1 Nefi 7',fx:{unity:1}},
+ ],
+ con:[
+  {t:'No sabes cómo construirlo',x:'Te quedas pensando sin saber por dónde empezar. Pierdes un turno.',r:'1 Nefi 17',fx:{skip:1}},
+  {t:'El Señor muestra a Nefi cómo hacerlo',x:'Las instrucciones llegan con claridad.',r:'1 Nefi 18',fx:{res:3}},
+  {t:'Los hermanos se burlan',x:'Las burlas desaniman, pero el trabajo continúa.',r:'1 Nefi 17',fx:{fe:-1}},
+  {t:'Trabajar con diligencia',x:'Una jornada larga y productiva.',r:'1 Nefi 18',fx:{wood:2}},
+  {t:'Herramientas',x:'Fabricas una herramienta más.',r:'1 Nefi 18',fx:{tool:1}},
+ ],
+ oce:[
+  {t:'Tormenta',x:'Las olas empujan el barco hacia atrás. Retrocedes 3 espacios.',r:'1 Nefi 18',fx:{move:-3}},
+  {t:'El barco pierde velocidad',x:'El viento amaina y el barco casi se detiene. Pierdes un turno.',r:'1 Nefi 18',fx:{skip:1}},
+  {t:'Problema con las cuerdas',x:'Una cuerda se afloja. Necesitas 1 Recurso para repararla; si no lo tienes, pierdes un turno.',r:'1 Nefi 18',fx:{repair:1}},
+  {t:'Escasez de alimentos',x:'Los víveres escasean en toda la travesía. Todos pierden 1 Alimento.',r:'1 Nefi 18',fx:{allFood:1}},
+  {t:'Nefi consigue alimento',x:'Nefi se las arregla para alimentar a la familia.',r:'1 Nefi 18',fx:{food:3}},
+  {t:'La Liahona funciona',x:'La esfera marca un rumbo claro. Avanzas 2 espacios.',r:'1 Nefi 18',fx:{move:2}},
+  {t:'Oración',x:'La familia se reúne a orar en cubierta.',r:'1 Nefi 18',fx:{fe:2}},
+  {t:'Vientos favorables',x:'Una corriente amiga acelera la travesía. Avanzas 2 espacios.',r:'1 Nefi 18',fx:{move:2}},
+ ]
+};
+const FIXED={
+ lehi:{icon:'📣',t:'Lehi predica en Jerusalén',r:'1 Nefi 1',x:'Hablas al pueblo sobre lo que se ha mostrado. Si tu Fe es 3 o más, te escuchan y avanzas 1 espacio.',fx:{moveIfFe:[3,1]}},
+ anger:{icon:'😠',t:'Los habitantes de Jerusalén se enojan',r:'1 Nefi 1',x:'Se burlan de ti y buscan hacerte daño. Debes esconderte y pierdes un turno.',fx:{skip:1}},
+ riches:{icon:'💰',t:'Abandonar riquezas',r:'1 Nefi 2',x:'Dejas atrás casa y oro por obedecer. Pierdes 2 Recursos, pero tu Fe crece.',fx:{res:-2,fe:2}},
+ camp:{icon:'⛺',t:'Campamento en el desierto',r:'1 Nefi 2',x:'Levantan las tiendas y comparten una comida junto al fuego.',fx:{food:2}},
+ salida:{icon:'🚪',t:'El Señor manda a Lehi salir',r:'1 Nefi 2',x:'Toda la caravana se reúne y parte hacia el desierto. Es el primer paso de fe.',fx:{fe:1}},
+ river:{icon:'🌊',t:'Río de Lemuel',r:'1 Nefi 2',x:'Lehi da nombre a un río y a un valle. Todos deben detenerse aquí a reflexionar.',fx:{fe:1,exp:1}},
+ valle:{icon:'🏞️',t:'Valle de Lemuel',r:'1 Nefi 2',x:'Un valle fértil donde la familia descansa y se fortalece.',fx:{fe:1}},
+ strength:{icon:'💪',t:'Nefi fortalece a su familia',r:'1 Nefi 3',x:'Con palabras de ánimo, Nefi ayuda a los suyos a seguir. Recuperas 1 Recurso.',fx:{res:1}},
+ plates:{icon:'📜',t:'¡Regresen a Jerusalén!',r:'1 Nefi 3',x:'El Señor manda volver por las planchas de bronce. Cada turno intentarás obtenerlas con el dado; puedes ofrecer 2 Recursos para mejorar tu tirada.',fx:{}},
+ ismael:{icon:'👪',t:'Regresan por Ismael',r:'1 Nefi 7',x:'La familia de Ismael se une al viaje: más manos y más ánimo, pero también más bocas. Desde ahora cada turno consumes 1 Alimento extra.',fx:{unity:2,food:2,family:true}},
+ tree:{icon:'🌳',t:'La visión del árbol de la vida',r:'1 Nefi 8',x:'Una visión de un árbol cuyo fruto es deseable sobre todo. Tira el dado para ver qué camino sigues.',table:[
+   {v:[1],x:'Nieblas de oscuridad: pierdes el camino y retrocedes 1 espacio.',fx:{fe:-1,move:-1}},
+   {v:[2],x:'El edificio grande y espacioso se burla de ti.',fx:{unity:-1}},
+   {v:[3,4],x:'Te aferras a la barra de hierro.',fx:{fe:1}},
+   {v:[5],x:'Pruebas el fruto: es dulce sobre toda dulzura.',fx:{fe:2}},
+   {v:[6],x:'¡Compartes el fruto con tu familia!',fx:{fe:2,unity:1,exp:1}}]},
+ forest:{icon:'🪵',t:'Árboles del desierto',r:'1 Nefi 16',x:'Cortas madera que podrás necesitar más adelante.',fx:{wood:2}},
+ liahona:{icon:'🧭',t:'La Liahona',r:'1 Nefi 16',x:'Una esfera de bronce aparece junto a la tienda de Lehi. Funciona según la fe y la diligencia de la familia. Ahora puedes consultarla una vez por turno.',fx:{liahona:true,fe:1}},
+ bow:{icon:'🏹',t:'El arco se rompe',r:'1 Nefi 16',x:'El arco de acero de Nefi se quiebra y la familia no puede cazar. Mientras esté roto no obtienes Alimentos y consumes 1 extra por turno. Fabrica uno nuevo con 1 Madera y 1 Herramienta.',fx:{bow:true}},
+ death:{icon:'⚰️',t:'Muerte de Ismael',r:'1 Nefi 16',x:'Ismael muere y la familia llora. Pierdes 1 de Unidad; puedes consolar a los demás con 1 Alimento para recuperarla.',fx:{unity:-1},choice:{label:'Consolar a la familia (−1 🍖)',cost:{food:1},fx:{unity:1}}},
+ abund:{icon:'🌴',t:'¡Tierra de Abundancia!',r:'1 Nefi 17',x:'Frutos, miel, agua y bosque. Después del desierto, la familia respira.',fx:{food:3,wood:2,res:1}},
+ ore:{icon:'⛏️',t:'Nefi funde mineral',r:'1 Nefi 17',x:'Nefi aprende a trabajar el metal para hacer herramientas.',fx:{tool:1,exp:1}},
+ mock:{icon:'😒',t:'Los hermanos se burlan',r:'1 Nefi 17',x:'Lamán y Lemuel dudan de que Nefi pueda construir un barco.',fx:{fe:-1}},
+ food:{icon:'🍯',t:'Frutas y miel silvestre',r:'1 Nefi 17',x:'La tierra de abundancia provee generosamente.',fx:{food:2}},
+ tool:{icon:'🔨',t:'Herramientas',r:'1 Nefi 17',x:'Consigues una herramienta más para el barco.',fx:{tool:1}},
+ yard:{icon:'🚢',t:'El astillero de Nefi',r:'1 Nefi 18',x:'El Señor muestra a Nefi cómo construir el barco. Para zarpar necesitas 10 Madera, 5 Herramientas y 5 de Fe. Cada turno trabajas en el barco: +2 Madera, +1 Herramienta y una carta de Construcción.',fx:{}},
+ hunt:{icon:'🏹',t:'Nefi consigue alimento',r:'1 Nefi 18',x:'Nefi se las ingenia para conseguir alimento durante la travesía.',fx:{food:3}},
+ lia2:{icon:'🧭',t:'La Liahona funciona',r:'1 Nefi 18',x:'La esfera marca el rumbo y las corrientes ayudan.',fx:{move:2}},
+ storm:{icon:'⛈️',t:'¡Gran tormenta!',r:'1 Nefi 18',x:'Olas enormes sacuden el barco durante días. Tira el dado y confía en el Señor.',table:[
+   {v:[1,2],x:'Pierdes recursos.',fx:{res:-2}},
+   {v:[3,4],x:'Permaneces donde estás.',fx:{}},
+   {v:[5],x:'Avanzas 1 espacio.',fx:{move:1}},
+   {v:[6],x:'Avanzas 2 espacios.',fx:{move:2}}]},
+ pray:{icon:'🙏',t:'Oración',r:'1 Nefi 18',x:'La familia ora unida durante la travesía.',fx:{fe:2}},
+ rebel:{icon:'😡',t:'Rebelión',r:'1 Nefi 18',x:'Lamán y Lemuel atan a Nefi y el barco queda sin rumbo. Pierdes el control: un turno y 1 de Unidad.',fx:{skip:1,unity:-1}},
+};
+const PLATES_TABLE=[
+ {v:[1],x:'Labán se niega.',fx:{fe:-1}},
+ {v:[2],x:'Pierdes recursos.',fx:{res:-2}},
+ {v:[3],x:'Intentas comprar las planchas y Labán se queda con lo que ofreces.',fx:{res:-1,exp:1}},
+ {v:[4],x:'Encuentras un nuevo camino. Próximo intento +1.',fx:{exp:1,platesBonus:1}},
+ {v:[5],x:'Obtienes ayuda. Próximo intento +1.',fx:{unity:1,platesBonus:1}},
+ {v:[6],x:'¡Obtienes las planchas!',fx:{fe:2,exp:2,plates:true}},
+];
+const LIAHONA_TABLE=[
+ {v:[1],x:'No funciona.',fx:{}},
+ {v:[2,3],x:'Avanzas 1 espacio.',fx:{move:1}},
+ {v:[4,5],x:'Avanzas 2 espacios.',fx:{move:2}},
+ {v:[6],x:'Encuentras un camino favorable: avanzas 3 espacios.',fx:{move:3}},
+];
+const BOW_TABLE=[
+ {v:[1,2,3],x:'El arco falla otra vez. Inténtalo de nuevo.',fx:{}},
+ {v:[4,5,6],x:'¡Arco nuevo! Nefi vuelve a cazar.',fx:{wood:-1,tool:-1,bow:false}},
+];
+
+/* mazos barajados */
+const bags={};
+function draw(k){
+  if(!bags[k]||!bags[k].length){
+    bags[k]=DECKS[k].map((c,i)=>i);
+    for(let i=bags[k].length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[bags[k][i],bags[k][j]]=[bags[k][j],bags[k][i]];}
+  }
+  return DECKS[k][bags[k].pop()];
+}
+
+/* ---------- dado 3D ---------- */
+const PIPS={1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};
+const FACE_ROT={1:[0,0],6:[0,180],3:[0,-90],4:[0,90],5:[-90,0],2:[90,0]};
+function makeDie(size){
+  const w=el('div','die-wrap');w.style.setProperty('--s',size+'px');
+  const tilt=el('div','tilt'),d=el('div','die');
+  for(let n=1;n<=6;n++){
+    const f=el('div','face f'+n);
+    for(let c=0;c<9;c++)f.appendChild(el('span',PIPS[n].includes(c)?'pip':''));
+    d.appendChild(f);
+  }
+  tilt.appendChild(d);w.appendChild(tilt);
+  let sx=0,sy=0;
+  const set=(x,y,anim)=>{d.style.transition=anim&&!RM?'transform 1.25s cubic-bezier(.15,.75,.2,1)':'none';d.style.transform=`rotateX(${x}deg) rotateY(${y}deg)`;};
+  set(0,0,false);
+  return{el:w,roll(v){
+    return new Promise(res=>{
+      const[bx,by]=FACE_ROT[v];
+      sx+=360*(2+rnd(2));sy+=360*(2+rnd(2));
+      set(bx+sx,by+sy,true);
+      if(!RM&&w.animate)w.animate([{transform:'translateY(0) scale(1)'},{transform:'translateY(-30px) scale(1.14)',offset:.35},{transform:'translateY(0) scale(1)'}],{duration:1250,easing:'ease-out'});
+      sfx('roll');
+      {const id=RUN;setTimeout(()=>{if(id===RUN)res();},RM?60:1320);}
+    });
+  }};
+}
+
+/* ---------- tablero ---------- */
+let PTS=[],CUM=[],SP=[];
+function buildGeometry(){
+  const x0=110,x1=890,ys=[90,235,380,525,670],R=72.5;
+  PTS=[];
+  for(let r=0;r<5;r++){
+    const ltr=r%2===0,row=[];
+    for(let x=x0;x<=x1;x+=10){
+      const t=Math.min(1,(x-x0)/70,(x1-x)/70);
+      row.push([x,ys[r]+Math.sin(x/65+r*1.7)*18*t]);
+    }
+    if(!ltr)row.reverse();
+    PTS.push(...row);
+    if(r<4){
+      const ym=(ys[r]+ys[r+1])/2,xe=ltr?x1:x0,dir=ltr?1:-1;
+      for(let a=.1;a<Math.PI;a+=.1)PTS.push([xe+dir*R*Math.sin(a),ym-R*Math.cos(a)]);
+    }
+  }
+  CUM=[0];
+  for(let i=1;i<PTS.length;i++)CUM.push(CUM[i-1]+Math.hypot(PTS[i][0]-PTS[i-1][0],PTS[i][1]-PTS[i-1][1]));
+  const total=CUM[CUM.length-1];
+  SP=TRACK.map((_,i)=>{
+    const d=total*i/LAST;
+    let k=1;while(k<CUM.length-1&&CUM[k]<d)k++;
+    const f=(d-CUM[k-1])/((CUM[k]-CUM[k-1])||1);
+    return{d,x:PTS[k-1][0]+(PTS[k][0]-PTS[k-1][0])*f,y:PTS[k-1][1]+(PTS[k][1]-PTS[k-1][1])*f};
+  });
+}
+function slicePath(d0,d1){
+  const pts=[];
+  const at=d=>{let k=1;while(k<CUM.length-1&&CUM[k]<d)k++;const f=(d-CUM[k-1])/((CUM[k]-CUM[k-1])||1);return[PTS[k-1][0]+(PTS[k][0]-PTS[k-1][0])*f,PTS[k-1][1]+(PTS[k][1]-PTS[k-1][1])*f];};
+  pts.push(at(d0));
+  for(let i=0;i<PTS.length;i++)if(CUM[i]>d0&&CUM[i]<d1)pts.push(PTS[i]);
+  pts.push(at(d1));
+  return'M'+pts.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join('L');
+}
+function wrapName(n){
+  if(n.length<=13)return[n];
+  const w=n.split(' ');let best=1,diff=1e9;
+  for(let i=1;i<w.length;i++){const a=w.slice(0,i).join(' ').length,b=w.slice(i).join(' ').length;if(Math.abs(a-b)<diff){diff=Math.abs(a-b);best=i;}}
+  return[w.slice(0,best).join(' '),w.slice(best).join(' ')];
+}
+/* ---------- mapa de fondo: la ruta de Jerusalén a Baja California ---------- */
+let MAPS_ON=true;
+const MAP={lon0:25,lon1:255,lat0:50,lat1:-40};
+const MSC=1000/(MAP.lon1-MAP.lon0),MTOP=(740-(MAP.lat0-MAP.lat1)*MSC)/2;
+const nlon=lo=>lo<0?lo+360:lo;
+const mpt=(lo,la)=>[(nlon(lo)-MAP.lon0)*MSC,MTOP+(MAP.lat0-la)*MSC];
+const BAJA=[[-117.12,32.53],[-116.7,31.95],[-116.62,31.85],[-116.3,31.3],[-116.0,30.6],[-115.8,30.0],[-115.7,29.7],[-115.2,29.35],[-114.9,28.9],[-114.6,28.4],[-115.0,27.9],[-114.4,27.6],[-114.0,27.4],[-113.6,26.9],[-113.2,26.6],[-112.7,25.9],[-112.3,25.2],[-112.0,24.7],[-111.6,24.0],[-110.8,23.4],[-110.1,22.9],[-109.9,22.88],[-109.5,23.15],[-109.6,23.6],[-110.0,24.0],[-110.3,24.2],[-110.6,24.9],[-111.1,25.6],[-111.4,26.1],[-111.8,26.7],[-112.2,27.3],[-112.6,27.75],[-113.0,28.4],[-113.2,28.9],[-113.7,29.3],[-114.2,29.9],[-114.6,30.6],[-114.8,31.0],[-114.75,31.5],[-114.9,31.85],[-114.7,32.7],[-115.0,32.7]];
+const LANDS=[
+ // África, Arabia y Asia (un solo continente conectado en Suez)
+ [[15,33],[20,32.3],[22,32.9],[25,31.8],[28,31.0],[31,31.5],[32.3,31.27],[33.8,31.1],[34.45,31.5],[34.75,32.08],[34.95,32.8],[35.2,33.27],[35.5,33.9],[35.9,35.5],[36.2,36.7],[34.5,36.8],[33,36.1],[31,36.8],[29.2,36.6],[27.5,37.0],[26.5,38.4],[26.3,40.0],[26,56],[145,56],[140,48],[135,43],[130,42.5],[129.3,41],[128,39],[129.4,37],[129.2,35.2],[126.5,34.5],[126.4,36.5],[126.6,37.8],[125,38],[124.4,39.8],[122.2,40.5],[121.3,40.9],[119.5,39.8],[118,39],[117.8,38.2],[119,37.2],[120.8,37.8],[122.5,37.4],[121,36.5],[119.3,35.1],[120.8,32.5],[121.9,31.4],[121.7,30.4],[122,29.5],[121.2,28.2],[120.5,27],[119.5,25.5],[118.2,24.5],[116.5,22.9],[114.2,22.3],[111.5,21.6],[110.5,21.3],[110.3,20.2],[109.7,21.5],[108.2,21.6],[106.8,20.6],[105.9,19.5],[106.6,18],[107.7,16.4],[108.6,15.2],[109.3,13.4],[109.2,11.6],[107.5,10.5],[106.5,9.6],[105.2,8.7],[104.8,9.6],[104.5,10.4],[103.6,10.6],[102.8,12],[101.1,12.7],[100.5,13.5],[99.9,12.3],[99.2,10.2],[100.2,8.3],[101.3,6.9],[102.4,6.2],[103.4,4.2],[103.5,2.3],[104.2,1.4],[103.5,1.3],[102.3,2.2],[101.3,3.0],[100.4,5.3],[100.1,6.4],[98.3,7.8],[98.6,10],[98.5,12.5],[97.6,16.5],[96,16.5],[94.6,16.3],[94.3,18.5],[93.5,19.9],[92.3,20.7],[91.8,22.3],[90.5,22.1],[89.2,21.9],[87.5,21.4],[86.7,20.3],[85.2,19.5],[84.2,18.3],[82.3,16.6],[80.9,15.8],[80.2,13.1],[79.8,10.5],[79.2,9.2],[78.2,8.9],[77.5,8.1],[76.3,9.9],[75.4,11.9],[74.8,13.0],[74.1,15.0],[73.3,17.5],[72.8,19.0],[72.8,20.4],[72.6,21.3],[72.0,21.0],[70.8,20.7],[69.2,22.1],[70.1,22.9],[68.5,23.5],[67.1,24.7],[66.5,25.4],[64.5,25.2],[62.3,25.1],[61.6,25.2],[59.5,25.4],[57.8,25.7],[56.9,27.1],[55.5,26.8],[54.0,26.7],[52.5,27.5],[51.3,28.9],[50.1,30.1],[48.9,30.2],[48.2,29.6],[48.7,28.5],[49.5,27.2],[50.2,26.3],[50.8,26.0],[51.2,26.1],[51.5,25.6],[51.4,24.6],[52.6,24.2],[54.0,24.1],[55.3,25.2],[56.1,26.0],[56.4,26.4],[56.4,25.6],[57.0,24.8],[58.5,23.6],[59.8,22.5],[58.8,20.4],[57.8,19.0],[56.5,17.9],[55.4,17.0],[54.1,17.0],[52.2,15.7],[51.0,15.4],[49.1,14.5],[47.0,13.6],[45,12.8],[43.5,12.7],[43.2,13.5],[42.8,15.5],[42.5,17.0],[41.2,19.3],[39.1,21.5],[38.0,24.1],[36.8,25.8],[35.5,27.5],[35.0,28.0],[34.95,29.55],[34.85,29.3],[34.6,28.1],[34.25,27.73],[33.5,28.2],[33.0,29.0],[32.6,29.9],[32.55,30.0],[32.4,29.7],[32.7,29.4],[33.1,28.3],[33.8,27.2],[34.4,26.1],[35.0,24.6],[35.5,23.5],[36.6,21.8],[37.2,19.6],[38.4,17.5],[39.5,15.6],[41.0,14.0],[42.4,13.0],[43.1,11.6],[45,10.4],[47.0,11.2],[49.0,11.3],[51.2,11.8],[50.8,9.5],[49.8,8.0],[49.0,6.2],[48.0,4.5],[45.3,2.1],[43.0,0.0],[41.5,-1.8],[40.4,-2.9],[39.7,-4.1],[39.3,-6.8],[39.5,-8.5],[40.1,-10.1],[40.5,-12.0],[40.6,-14.7],[39.5,-16.3],[36.9,-17.9],[34.8,-19.8],[35.5,-22.2],[35.4,-24.0],[33.5,-25.2],[32.9,-26.9],[32.8,-28.0],[31.0,-29.9],[29.6,-31.3],[27.9,-33.0],[26.3,-34.0],[25.0,-34.0],[22.0,-34.2],[20.0,-34.8],[18.5,-34.1],[15,-34]],
+ // Sri Lanka, Sumatra, Java, Borneo, Nueva Guinea, Filipinas, Japón, Madagascar
+ [[79.9,9.7],[80.5,9.2],[81.4,8.3],[81.9,7.2],[81.3,6.2],[80.4,5.95],[79.85,7.0]],
+ [[95.3,5.6],[97.5,5.2],[98.6,3.9],[100.3,2.2],[103.0,-0.8],[104.6,-2.5],[105.8,-5.9],[104.6,-5.9],[102.2,-4.0],[100.3,-1.0],[98.8,1.7],[97.0,3.9]],
+ [[105.2,-6.4],[108.5,-6.5],[111.0,-6.4],[114.4,-7.7],[114.4,-8.7],[111.5,-8.3],[108.0,-7.8],[105.5,-6.9]],
+ [[109.1,1.2],[110.0,1.9],[111.5,2.9],[113.0,3.3],[114.8,4.9],[116.0,6.9],[116.8,7.0],[119.2,5.2],[118.2,4.3],[117.8,1.9],[118.8,0.9],[117.5,-0.9],[116.5,-2.6],[116.0,-4.0],[114.5,-4.1],[112.5,-3.2],[110.4,-3.1],[109.1,-1.5]],
+ [[119.4,-5.4],[120.3,-3.0],[119.8,-0.5],[120.0,1.0],[124.5,1.5],[125.1,1.2],[123.0,0.3],[121.4,0.6],[122.5,-1.5],[121.5,-4.0],[122.8,-4.5],[121.7,-3.0],[121.0,-2.5],[120.8,-5.7]],
+ [[131.0,-0.8],[134.0,-0.9],[135.9,-3.3],[138.0,-1.6],[141.0,-2.6],[144.5,-3.9],[146.9,-5.6],[147.8,-6.2],[148.2,-8.0],[150.7,-10.5],[149.3,-10.3],[147.0,-9.1],[146.0,-8.1],[143.5,-8.5],[141.0,-9.1],[139.2,-8.1],[138.0,-8.4],[137.9,-5.5],[135.0,-4.4],[133.5,-4.0],[132.5,-2.9],[131.2,-2.0]],
+ [[113.5,-22.0],[114.0,-26.0],[115.0,-30.0],[115.7,-33.0],[115.0,-34.3],[117.5,-35.0],[121.5,-33.8],[124.0,-33.0],[126.0,-32.3],[129.0,-31.6],[131.0,-31.5],[134.0,-32.7],[135.5,-34.8],[137.5,-33.0],[138.0,-35.5],[140.0,-37.5],[142.0,-38.2],[144.5,-38.2],[146.0,-39.0],[148.0,-37.9],[150.0,-37.4],[151.2,-33.9],[153.0,-30.0],[153.5,-27.5],[152.5,-24.5],[150.5,-22.5],[148.8,-20.2],[146.2,-18.8],[145.4,-15.0],[143.7,-14.2],[142.5,-10.7],[141.5,-13.0],[141.5,-16.5],[139.5,-17.4],[137.0,-15.9],[135.5,-14.8],[136.8,-12.2],[134.0,-12.0],[132.5,-11.5],[131.0,-12.3],[129.5,-14.9],[128.0,-15.0],[126.0,-14.0],[125.0,-15.5],[123.5,-17.0],[122.2,-18.0],[121.0,-19.5],[118.5,-20.4],[116.5,-20.7],[114.5,-21.7]],
+ [[144.7,-40.7],[148.3,-40.9],[147.9,-43.2],[146.0,-43.5]],
+ [[120.4,18.4],[122.2,18.4],[121.8,15.0],[124.0,12.6],[121.0,13.8],[120.0,16.0]],
+ [[122.0,7.0],[125.5,9.8],[126.5,7.0],[125.5,5.9],[123.0,6.9]],
+ [[130.8,31.0],[132.0,33.5],[135.0,33.7],[137.0,34.6],[139.9,35.1],[141.0,38.3],[141.6,41.0],[140.0,40.5],[139.8,38.5],[137.0,37.4],[135.5,35.6],[132.5,35.5],[131.0,34.0],[130.2,33.5]],
+ [[140.0,41.8],[141.5,45.4],[145.4,43.3],[143.0,42.0]],
+ [[43.3,-23.5],[44.0,-25.0],[47.0,-25.0],[47.6,-24.5],[47.2,-23.0],[48.4,-20.0],[49.4,-16.4],[50.5,-15.2],[49.2,-12.0],[48.0,-13.5],[44.5,-16.0],[44.0,-19.0],[43.7,-22.0]],
+ // Norteamérica: costa del Pacífico, Baja California y el Golfo de California
+ [[-125,50],[-124.8,48.4],[-124.1,46.3],[-124.4,43],[-124.3,40.4],[-123.8,39.4],[-122.5,37.8],[-121.9,36.6],[-120.6,34.6],[-118.5,34.0],...BAJA.slice(0,41),[-114.8,31.7],[-113.6,31.3],[-113.0,31.1],[-112.8,30.5],[-112.2,29.4],[-111.4,28.4],[-110.9,27.9],[-109.5,26.6],[-109.0,25.6],[-108.0,25.0],[-107.0,23.8],[-106.4,23.2],[-105.5,21.9],[-103,21],[-103,50]],
+];
+const SEAS=[
+ [[28.0,41.2],[29.1,41.2],[31.5,41.1],[35.0,42.0],[36.5,41.3],[38.5,40.9],[41.5,41.5],[41.6,42.7],[40.0,43.4],[37.5,44.7],[35.5,45.0],[33.5,44.5],[33.0,45.2],[32.5,46.0],[31.0,46.5],[30.3,45.6],[29.7,45.2],[28.7,44.3],[28.0,42.9]],
+ [[49.2,40.3],[50.4,40.4],[53.0,39.3],[53.9,37.3],[51.5,36.8],[49.3,37.6],[49.0,38.8],[48.4,41.5],[47.5,43.0],[47.0,45.5],[49.0,46.5],[51.5,46.8],[53.0,45.3],[51.2,44.5],[51.0,42.5],[52.8,41.3],[53.0,40.2]],
+];
+const ROUTE=[
+ {c:'#C9962F',p:[[35.22,31.78],[35.8,30.6],[36.4,29.4]]},
+ {c:'#B5532A',p:[[36.4,29.4],[38,26.2],[40,22.8],[42.3,19.6],[45,16.2],[49.5,16.8]]},
+ {c:'#3E8A5C',p:[[49.5,16.8],[54.1,17.0],[57.5,16.2]]},
+ {c:'#1F6A94',p:[[57.5,16.2],[65,11],[73,4.5],[82,-0.5],[92,-4],[100,-5.8],[105.5,-6.15],[110,-5.5],[115,-6.2],[121,-6.6],[127,-6.8],[133,-8.3],[138,-9.6],[142.3,-10.0],[147,-11.4],[152,-11.2],[160,-8],[170,-2],[180,5],[195,12],[212,17.5],[228,22],[238,24.6]]},
+ {c:'#D0503F',p:[[238,24.6],[242,26],[245.3,27.2]]},
+];
+function smooth(P){
+  const f=v=>v.toFixed(1);
+  let d=`M${f(P[0][0])} ${f(P[0][1])}`;
+  for(let i=0;i<P.length-1;i++){
+    const p0=P[i-1]||P[i],p1=P[i],p2=P[i+1],p3=P[i+2]||p2;
+    d+=`C${f(p1[0]+(p2[0]-p0[0])/6)} ${f(p1[1]+(p2[1]-p0[1])/6)} ${f(p2[0]-(p3[0]-p1[0])/6)} ${f(p2[1]-(p3[1]-p1[1])/6)} ${f(p2[0])} ${f(p2[1])}`;
+  }
+  return d;
+}
+function bgMaps(){
+  const poly=pts=>'M'+pts.map(q=>mpt(q[0],q[1]).map(v=>v.toFixed(1)).join(' ')).join('L')+'Z';
+  const H=(MAP.lat0-MAP.lat1)*MSC;
+  let o=`<g id="bgmaps" style="pointer-events:none;${MAPS_ON?'':'display:none'}" aria-hidden="true">`;
+  o+=`<defs><linearGradient id="mfade" gradientUnits="userSpaceOnUse" x1="0" y1="${MTOP}" x2="0" y2="${MTOP+H}"><stop offset="0" stop-color="#000"/><stop offset=".14" stop-color="#fff"/><stop offset=".86" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient><mask id="mmask" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="740"><rect width="1000" height="740" fill="url(#mfade)"/></mask><clipPath id="mclip"><rect x="0" y="0" width="1000" height="740"/></clipPath></defs>`;
+  o+=`<g mask="url(#mmask)" clip-path="url(#mclip)">`;
+  [60,90,120,150,180,210,240].forEach(lo=>{const x=mpt(lo,0)[0];o+=`<line x1="${x.toFixed(1)}" y1="${MTOP}" x2="${x.toFixed(1)}" y2="${MTOP+H}" stroke="var(--ink)" stroke-opacity=".07" stroke-dasharray="3 7"/>`;});
+  [30,0,-30].forEach(la=>{const y=mpt(25,la)[1];o+=`<line x1="0" y1="${y.toFixed(1)}" x2="1000" y2="${y.toFixed(1)}" stroke="var(--ink)" stroke-opacity="${la===0?.12:.07}" stroke-dasharray="3 7"/>`;});
+  LANDS.forEach(l=>{o+=`<path d="${poly(l)}" fill="var(--ink)" fill-opacity=".10" stroke="var(--ink)" stroke-opacity=".34" stroke-width="1.3" stroke-linejoin="round"/>`;});
+  SEAS.forEach(l=>{o+=`<path d="${poly(l)}" fill="var(--panel)" stroke="var(--ink)" stroke-opacity=".3" stroke-width="1"/>`;});
+  o+=`<path d="${poly(BAJA)}" fill="#D0503F" fill-opacity=".55" stroke="#D0503F" stroke-opacity=".9" stroke-width="1.6"/>`;
+  o+='</g>';
+  ROUTE.forEach(s=>{o+=`<path d="${smooth(s.p.map(q=>mpt(q[0],q[1])))}" fill="none" stroke="${s.c}" stroke-opacity=".9" stroke-width="3.6" stroke-linecap="round" stroke-dasharray="1 8"/>`;});
+  const lab=(t,lo,la,cls='maplbl')=>{const[x,y]=mpt(lo,la);return`<text class="${cls}" x="${x.toFixed(1)}" y="${y.toFixed(1)}">${t}</text>`;};
+  o+=lab('Península arábiga',47,26.5)+lab('Océano Índico',76,-14)+lab('Australia',134,-24.5)+lab('Océano Pacífico',190,-8)+lab('África',29,-8)+lab('Asia',100,34);
+  const pin=(lo,la,t,dx,dy,col)=>{const[x,y]=mpt(lo,la);return`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5.5" fill="${col}" stroke="var(--panel)" stroke-width="2"/><text class="mappin" x="${(x+dx).toFixed(1)}" y="${(y+dy).toFixed(1)}">${t}</text>`;};
+  o+=pin(35.22,31.78,'Jerusalén · origen',9,-8,'#C9962F')+pin(54.1,17.0,'Costa de Abundancia',-8,22,'#3E8A5C')+pin(245.3,27.2,'Baja California · destino',-150,-12,'#D0503F');
+  const[cx,cy]=[945,38];
+  o+=`<g opacity=".55" fill="none" stroke="var(--ink)"><circle cx="${cx}" cy="${cy}" r="21" stroke-width="1.2"/><path d="M${cx} ${cy-21}L${cx+5} ${cy-5}L${cx+21} ${cy}L${cx+5} ${cy+5}L${cx} ${cy+21}L${cx-5} ${cy+5}L${cx-21} ${cy}L${cx-5} ${cy-5}Z" fill="var(--ink)" fill-opacity=".35" stroke-width="1"/></g><text class="maplbl" x="${cx}" y="${cy-27}" style="font-size:12px">N</text>`;
+  o+=`<text class="maplbl" x="500" y="731" style="font-size:13px;opacity:.45">Mapa de fondo · la ruta de Jerusalén a Baja California</text>`;
+  return o+'</g>';
+}
+function drawBoard(){
+  buildGeometry();
+  const total=CUM[CUM.length-1];
+  let s=`<defs><pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="currentColor" opacity=".10"/></pattern></defs><rect width="1000" height="740" fill="url(#dots)" style="color:var(--ink)"/>`;
+  s+=`<defs><radialGradient id="vig" cx=".5" cy=".5" r=".72"><stop offset=".5" stop-color="#2a1a08" stop-opacity="0"/><stop offset="1" stop-color="#2a1a08" stop-opacity=".42"/></radialGradient></defs>`;
+  s+=bgMaps();
+  s+=`<rect width="1000" height="740" fill="url(#vig)" pointer-events="none"/>`;
+  REGIONS.forEach(r=>{
+    const d0=r.a===0?0:(SP[r.a-1].d+SP[r.a].d)/2;
+    const d1=r.b===LAST?total:(SP[r.b].d+SP[r.b+1].d)/2;
+    s+=`<path d="${slicePath(d0,d1)}" fill="none" stroke="${r.c}" stroke-opacity=".30" stroke-width="74" stroke-linecap="round" stroke-linejoin="round"/>`;
+  });
+  s+=`<path d="${slicePath(0,total)}" fill="none" stroke="var(--ink)" stroke-opacity=".28" stroke-width="3" stroke-dasharray="1 11" stroke-linecap="round"/>`;
+  TRACK.forEach((sp,i)=>{
+    const p=SP[i],hito=sp.hito,r=hito?27:19,col=NODECOL[TCAT[sp.type]||'neu'],reg=regionOf(i);
+    s+=`<g><circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="var(--panel2)" stroke="${hito?'var(--ring)':col}" stroke-width="${hito?4:3}"/>`;
+    if(hito)s+=`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r+5}" fill="none" stroke="${reg.c}" stroke-width="2" stroke-dasharray="3 5"/>`;
+    s+=`<text x="${p.x.toFixed(1)}" y="${(p.y+1).toFixed(1)}" font-size="${hito?27:20}" text-anchor="middle" dominant-baseline="central">${sp.icon}</text></g>`;
+    if(hito&&sp.name){
+      const lines=wrapName(sp.name),lx=clamp(p.x,70,930);
+      const w=Math.max(...lines.map(l=>l.length))*7+18,h=lines.length*15+9,y0=p.y+r+7;
+      s+=`<rect class="plq" x="${(lx-w/2).toFixed(1)}" y="${y0.toFixed(1)}" width="${w.toFixed(1)}" height="${h}" rx="5"/><text class="lbl" x="${lx.toFixed(1)}" y="${(y0+16).toFixed(1)}">${lines.map((l,k)=>`<tspan x="${lx.toFixed(1)}" dy="${k?15:0}">${esc(l)}</tspan>`).join('')}</text>`;
+    }
+  });
+  s+=`<g id="tokens"></g>`;
+  $('#board').innerHTML=s;
+}
+
+/* ---------- estado ---------- */
+let G=null,dock=null;
+const cur=()=>G.players[G.cur];
+const nm=p=>`<b style="color:${p.color}">${esc(p.name)}</b>`;
+function log(h){G.log.unshift(h);G.log.length=Math.min(G.log.length,60);renderLog();}
+function toast(t){const n=el('div','toast',esc(t));$('#toasts').appendChild(n);setTimeout(()=>n.remove(),2400);}
+const blockedHere=p=>(p.pos===PLATES_AT&&!p.done.has(PLATES_AT))||(p.pos===YARD_AT&&!p.ship);
+const allArrived=()=>G.players.every(p=>p.arrived);
+
+function newPlayer(cfg,i){
+  const role=ROLES.find(r=>r.id===cfg.role);
+  const p={id:i,name:cfg.name,role,color:COLORS[i],pos:0,fe:5,food:5,res:3,wood:0,tool:1,unity:5,exp:0,
+    skip:0,again:false,liahona:false,plates:false,ship:false,bowBroken:false,bigFamily:false,arrived:false,rank:0,bonus:0,
+    platesBonus:0,consulted:false,done:new Set([0]),shown:null};
+  for(const k in role.st)p[k]+=role.st[k];
+  return p;
+}
+
+/* ---------- render ---------- */
+function renderLog(){$('#log').innerHTML=G.log.map(l=>`<li>${l}</li>`).join('');}
+function renderPlayers(){
+  $('#players').innerHTML=G.players.map((p,i)=>{
+    const flags=[p.liahona?'<span title="Tiene la Liahona">🧭</span>':'',p.plates?'<span title="Tiene las planchas">📜</span>':'',p.ship?'<span title="Barco construido">🚢</span>':'',
+      p.bowBroken?'<span title="Arco roto">🏹❌</span>':'',p.bigFamily?'<span title="Familia de Ismael">👪</span>':'',p.arrived?'<span title="Llegó">🏝️</span>':''].join('');
+    const stats=ORDER.map(k=>{
+      const c=p.shown&&p.shown[k]!==p[k]?(p[k]>p.shown[k]?' up':' dn'):'';
+      return`<span class="${c}" title="${ST[k][1]}">${ST[k][0]} ${p[k]}</span>`;
+    }).join('');
+    p.shown={};ORDER.forEach(k=>p.shown[k]=p[k]);
+    return`<div class="pl ${i===G.cur?'active':''} ${p.arrived?'done':''}" style="--pc:${p.color}">
+      <div class="plh"><span class="dot">${p.role.e}</span><b>${esc(p.name)}</b><small>${p.arrived?'Llegó en lugar '+p.rank:esc(p.role.n)}</small></div>
+      <div class="stats">${stats}</div><div class="flags">${flags}</div>
+      <div class="prog"><i style="width:${p.pos/LAST*100}%"></i></div></div>`;
+  }).join('');
+}
+function renderTurn(){
+  const p=cur();
+  $('#turn').style.setProperty('--pc',p.color);
+  $('#tk').textContent=p.role.e;$('#tname').textContent=p.name;$('#trole').textContent=p.role.n+' · '+regionOf(p.pos).n;
+  const sr=$('#shipreq');
+  if(p.pos===YARD_AT&&!p.ship){
+    const s=shipStatus(p);
+    sr.textContent=`Barco: Madera ${p.wood}/10 · Herramientas ${p.tool}/5 · Fe ${p.fe}/5. Cada 2 Recursos cubren 1 Madera que falte.`;
+  }else sr.textContent='';
+}
+function tokenPos(p,k,n){
+  const s=SP[p.pos];
+  if(n===1)return[s.x,s.y];
+  const a=2*Math.PI*k/n-Math.PI/2;
+  return[s.x+Math.cos(a)*24,s.y+Math.sin(a)*24];
+}
+function placeTokens(){
+  const g=$('#tokens');
+  G.players.forEach(p=>{
+    if(!p.tok){
+      p.tok=document.createElementNS('http://www.w3.org/2000/svg','g');p.tok.setAttribute('class','tok');
+      p.tok.innerHTML=`<circle class="ring" r="27" fill="none" stroke="${p.color}" stroke-width="4" style="display:none"/><g class="hop"><circle r="18" fill="#F3E6C4" stroke="${p.color}" stroke-width="5.5"/><text font-size="21" text-anchor="middle" dominant-baseline="central" y="1.5">${p.role.e}</text></g>`;
+      g.appendChild(p.tok);
+    }
+  });
+  G.players.forEach(p=>{
+    const same=G.players.filter(q=>q.pos===p.pos),k=same.indexOf(p);
+    const[x,y]=tokenPos(p,k,same.length);
+    p.tok.style.transform=`translate(${x}px,${y}px)`;
+    p.tok.querySelector('.ring').style.display=p===cur()&&!p.arrived?'':'none';
+  });
+  G.players.forEach(p=>{if(p===cur())g.appendChild(p.tok);});
+  const wrap=$('#boardwrap');
+  if(wrap.scrollWidth>wrap.clientWidth){
+    const sc=$('#board').clientWidth/1000;
+    wrap.scrollTo({left:SP[cur().pos].x*sc-wrap.clientWidth/2,behavior:RM?'auto':'smooth'});
+  }
+}
+function renderAll(){renderPlayers();renderTurn();placeTokens();renderLog();}
+function setHint(t){$('#hint').textContent=t;}
+
+/* ---------- efectos ---------- */
+function applyFx(p,fx,chips){
+  const out={move:0,again:false};
+  const add=(k,t)=>chips.push(`<span class="chip ${k}">${t}</span>`);
+  for(const k of ORDER){
+    const v=fx[k];if(!v)continue;
+    if(k==='food'&&v>0&&p.bowBroken){add('info','🏹 Arco roto: no obtienes alimentos');continue;}
+    const before=p[k];p[k]=Math.max(0,before+v);const d=p[k]-before;
+    if(d>0)add('gain',`+${d} ${ST[k][0]} ${ST[k][1]}`);
+    else if(d<0)add('loss',`−${-d} ${ST[k][0]} ${ST[k][1]}`);
+    else add('info',`No tenías ${ST[k][1].toLowerCase()} que perder`);
+  }
+  if(fx.moveIfFe){const[min,v]=fx.moveIfFe;if(p.fe>=min)out.move+=v;else add('info',`Necesitas ${min} de Fe para avanzar`);}
+  if(fx.move)out.move+=fx.move;
+  if(out.move>0)add('gain',`Avanzas ${out.move} ${plural(out.move,'espacio','espacios')}`);
+  if(out.move<0)add('loss',`Retrocedes ${-out.move} ${plural(-out.move,'espacio','espacios')}`);
+  if(fx.skip){p.skip+=fx.skip;add('loss',`Pierdes ${fx.skip} ${plural(fx.skip,'turno','turnos')}`);}
+  if(fx.allSkip){G.players.forEach(q=>{if(!q.arrived)q.skip+=1;});add('loss','Todos pierden 1 turno');}
+  if(fx.allFood){G.players.forEach(q=>{q.food=Math.max(0,q.food-fx.allFood);});add('loss',`Todos pierden ${fx.allFood} 🍖 Alimento`);}
+  if(fx.again){out.again=true;add('gain','🎲 Tiras otra vez');}
+  if(fx.bow===true){p.bowBroken=true;add('loss','🏹 Arco roto');}
+  if(fx.bow===false){p.bowBroken=false;add('gain','🏹 Arco nuevo');}
+  if(fx.liahona){p.liahona=true;add('gain','🧭 Obtienes la Liahona');}
+  if(fx.family){p.bigFamily=true;add('info','👪 Más bocas: −1 🍖 por turno');}
+  if(fx.plates){p.plates=true;p.done.add(PLATES_AT);add('gain','📜 Tienes las planchas');}
+  if(fx.platesBonus){p.platesBonus+=fx.platesBonus;add('info',`Próximo intento: +${fx.platesBonus}`);}
+  if(fx.repair){if(p.res>=1){p.res--;add('loss','−1 🧺 Recursos (reparación)');}else{p.skip+=1;add('loss','Sin recursos: pierdes 1 turno');}}
+  return out;
+}
+
+/* ---------- carta ---------- */
+async function presentCard(p,card,depth=0){
+  const cat=CATS[card.cat||'lug'],icon=card.icon||cat.i;
+  const ov=el('div','overlay');
+  ov.innerHTML=`<div class="card3d"><div class="cardinner" style="--cc:${cat.c}">
+    <div class="back"><div class="medal">${cat.i}</div><div class="backname">${cat.n}</div></div>
+    <div class="front">
+      <div class="cf-top"><span>${cat.n}</span><span class="ref">${esc(card.r||'')}</span></div>
+      <div class="cf-icon">${icon}</div><h3>${esc(card.t)}</h3><p class="cf-txt">${esc(card.x)}</p>
+      ${card.note?`<p class="cf-note">${esc(card.note)}</p>`:''}
+      <div class="cf-roll" hidden></div><div class="chips"></div><div class="cf-actions"></div>
+    </div></div></div>`;
+  document.body.appendChild(ov);
+  const ci=$('.cardinner',ov),front=$('.front',ov),chipsEl=$('.chips',front),actEl=$('.cf-actions',front),rollEl=$('.cf-roll',front);
+  sfx('card');await sleep(80);ci.classList.add('flipped');await sleep(860);
+  let fx=card.fx||{};const chips=[];
+  if(card.table){
+    const mod=card.mod||0;
+    rollEl.hidden=false;
+    rollEl.innerHTML=`<div class="rtop"><div class="rd"></div><div class="rbtn"><button class="btn small" id="cr">Tirar dado</button>${mod?`<span>${esc(card.modNote||'')} (${mod>0?'+':''}${mod})</span>`:''}</div></div>
+      <table class="rt">${card.table.map(r=>`<tr data-v="${r.v.join(',')}"><td>${r.v.length>1?r.v[0]+'–'+r.v[r.v.length-1]:r.v[0]}</td><td>${esc(r.x)}</td></tr>`).join('')}</table>`;
+    const die=makeDie(62);$('.rd',rollEl).appendChild(die.el);
+    const btn=$('#cr',rollEl);await click(btn);btn.disabled=true;
+    const raw=rnd(6),val=clamp(raw+mod,1,6);
+    await die.roll(raw);
+    const row=card.table.find(r=>r.v.includes(val))||card.table[card.table.length-1];
+    $$tr(rollEl).forEach(tr=>{if(tr.dataset.v.split(',').map(Number).includes(val))tr.classList.add('hit');});
+    $('.rbtn',rollEl).innerHTML=`<span>Sacaste ${raw}${mod?(mod>0?' + ':' − ')+Math.abs(mod)+' = '+val:''}</span>`;
+    fx=row.fx||{};
+    const r=el('div','cf-result',esc(row.x));front.insertBefore(r,chipsEl);
+    await sleep(250);
+  }
+  const out=applyFx(p,fx,chips);
+  (card.extra||[]).forEach(e=>chips.push(`<span class="chip ${e[0]}">${e[1]}</span>`));
+  chipsEl.innerHTML=chips.join('');
+  renderPlayers();renderTurn();
+  const g=chips.filter(c=>c.includes('chip gain')).length,b=chips.filter(c=>c.includes('chip loss')).length;
+  if(card.final)sfx('win');else if(b>g)sfx('bad');else if(g>0)sfx('good');
+  log(`${nm(p)} · ${esc(card.t)}`);
+  if(card.choice){
+    const ch=card.choice,can=Object.entries(ch.cost).every(([k,v])=>p[k]>=v);
+    actEl.innerHTML=`<button class="btn" id="cA" ${can?'':'disabled'}>${ch.label}</button><button class="btn ghost" id="cB">Seguir adelante</button>`;
+    const a=await Promise.race([click($('#cA',actEl)).then(()=>'a'),click($('#cB',actEl)).then(()=>'b')]);
+    if(a==='a'){for(const k in ch.cost)p[k]-=ch.cost[k];applyFx(p,ch.fx,[]);log(`${nm(p)} consuela a la familia.`);renderPlayers();}
+  }else{
+    actEl.innerHTML=`<button class="btn" id="cOk">${card.final?'Ver resultados':'Aceptar'}</button>`;
+    await click($('#cOk',actEl));
+  }
+  ov.classList.add('out');await sleep(200);ov.remove();
+  if(out.again)p.again=true;
+  if(out.move>0)await moveForward(p,out.move,depth+1);
+  else if(out.move<0)await moveBack(p,-out.move);
+  return out;
+}
+function $$tr(root){return[...root.querySelectorAll('tr')];}
+
+/* ---------- movimiento ---------- */
+async function stepAnim(p){
+  placeTokens();sfx('step');
+  const h=$('.hop',p.tok);
+  if(!RM&&h.animate)h.animate([{transform:'translateY(0)'},{transform:'translateY(-9px)'},{transform:'translateY(0)'}],{duration:280});
+  await sleep(310);
+}
+const PASS={
+ salida:{r:'1 Nefi 2',check:['fe',4],ok:{t:'Partes con decisión',x:'Dejas Jerusalén sin mirar atrás, sostenido por tu fe.',fx:{exp:1}},bad:{t:'Partes con dudas',x:'Te cuesta dejarlo todo y avanzas con el corazón dividido.',fx:{fe:-1}}},
+ river:{r:'1 Nefi 2',check:['fe',4],ok:{t:'Cruzas junto al río con firmeza',x:'Recuerdas las palabras de Lehi sobre ser firme e inmutable.',fx:{fe:1}},bad:{t:'Pasas el río sin detenerte',x:'Tu apuro molesta a los demás y nadie aprende nada del lugar.',fx:{unity:-1}}},
+ plates:{r:'1 Nefi 3–4',check:['fe',6],ok:{t:'¡Tuviste mucha fe!',x:'No tuviste que volver por tus pasos: el Señor abre el camino y obtienes las planchas de bronce.',fx:{fe:1,exp:1,plates:true}},bad:{t:'Te faltó fe',x:'El miedo te vence y te escondes en el hueco de una roca. Pierdes un turno y no obtienes las planchas.',fx:{skip:1}}},
+ ismael:{r:'1 Nefi 7',check:['unity',5],ok:{t:'Ismael y su familia se unen con alegría',x:'Tu unión con la caravana convence a todos. Hay más manos, pero también más bocas: cada turno consumes 1 Alimento extra.',fx:{unity:2,food:2,family:true}},bad:{t:'La familia de Ismael se une con reservas',x:'Vienen, pero el ánimo es bajo. Cada turno consumes 1 Alimento extra.',fx:{food:1,family:true}}},
+ tree:{r:'1 Nefi 8',check:['fe',5],ok:{t:'Te aferras a la barra de hierro',x:'Ves el árbol desde lejos y no sueltas la barra.',fx:{fe:1,exp:1}},bad:{t:'Nieblas de oscuridad',x:'Una niebla te desvía del camino y dudas.',fx:{fe:-1}}},
+ liahona:{r:'1 Nefi 16',check:['fe',5],ok:{t:'Descubres la Liahona a tiempo',x:'Notas la esfera de bronce al salir de la tienda. Ahora puedes consultarla una vez por turno.',fx:{liahona:true,fe:1}},bad:{t:'Recoges la Liahona tarde',x:'La esfera quedó olvidada y vuelves por ella. Ahora puedes consultarla una vez por turno.',fx:{liahona:true}}},
+ bow:{r:'1 Nefi 16',check:['tool',1],ok:{t:'Nefi repara su arco a tiempo',x:'Usas una herramienta para reforzar el arco antes de que se quiebre.',fx:{tool:-1}},bad:{t:'El arco se rompe',x:'Sin herramientas, el arco se quiebra. No obtienes Alimentos y consumes 1 extra por turno hasta fabricar uno nuevo.',fx:{bow:true}}},
+ death:{r:'1 Nefi 16',check:['unity',4],ok:{t:'La familia se mantiene unida',x:'Ismael muere, pero se sostienen unos a otros.',fx:{unity:-1}},bad:{t:'El duelo divide a la familia',x:'La pena abre heridas y la familia se resiente.',fx:{unity:-2,fe:-1}}},
+ abund:{r:'1 Nefi 17',ok:{t:'Cruzas la tierra fértil',x:'Recoges lo que puedes sin detenerte.',fx:{food:2,wood:1}}},
+ storm:{r:'1 Nefi 18',check:['fe',5],ok:{t:'La tormenta pasa sin dañarte',x:'Tu fe te mantiene sereno mientras otros tiemblan.',fx:{exp:1}},bad:{t:'La tormenta golpea el barco',x:'Pierdes provisiones en medio de las olas.',fx:{food:-1,res:-1}}},
+};
+async function passEvent(p,i,depth){
+  const sp=TRACK[i],d=PASS[sp.type];
+  if(!d){p.done.add(i);return;}
+  let r,note='Pasaste de largo por este lugar.';
+  if(d.check){
+    const[stat,min]=d.check,good=p[stat]>=min;
+    r=good?d.ok:d.bad;
+    note=`Pasaste de largo. Prueba de ${ST[stat][1]}: necesitas ${min} y tienes ${p[stat]}.`;
+  }else r=d.ok;
+  await presentCard(p,{cat:'lug',icon:sp.icon,t:r.t,r:d.r,x:r.x,note,fx:r.fx||{}},depth+1);
+  p.done.add(i);
+}
+async function moveForward(p,steps,depth=0){
+  for(let k=0;k<steps;k++){
+    if(p.pos>=LAST||blockedHere(p))break;
+    p.pos++;renderPlayers();await stepAnim(p);
+    const i=p.pos,sp=TRACK[i];
+    if(i===YARD_AT&&!p.ship){if(k<steps-1)toast('Sin barco no se puede zarpar: te detienes en el astillero');break;}
+    if(sp.hito&&i!==LAST&&!p.done.has(i)&&k<steps-1)await passEvent(p,i,depth);
+  }
+  await landing(p,depth);
+}
+async function moveBack(p,steps){
+  for(let k=0;k<steps&&p.pos>0;k++){p.pos--;renderPlayers();await stepAnim(p);}
+  log(`${nm(p)} retrocede.`);
+}
+async function landing(p,depth){
+  const i=p.pos,sp=TRACK[i];
+  if(i===LAST){if(!p.arrived)await arrive(p);return;}
+  if(depth>2||i===0)return;
+  if(sp.hito&&p.done.has(i))return;
+  const card=spaceCard(sp);
+  if(sp.type==='plates'||sp.type==='yard'){
+    if(!p.seen)p.seen=new Set();
+    if(!p.seen.has(i)){p.seen.add(i);await presentCard(p,card,depth);}
+    if(sp.type==='yard'&&!p.ship)await tryShip(p);
+    return;
+  }
+  await presentCard(p,card,depth);
+  if(sp.hito)p.done.add(i);
+}
+function spaceCard(sp){
+  switch(sp.type){
+    case'dir':case'rev':return{cat:'dir',...draw('dir')};
+    case'des':return{cat:'des',...draw('des')};
+    case'mur':return{cat:'mur',...draw('mur')};
+    case'fe':return{cat:'fe',...draw('fe')};
+    case'ocean':return{cat:'oce',...draw('oce')};
+    default:return{cat:sp.type==='pray'?'fe':(sp.type==='storm'||sp.type==='lia2'||sp.type==='hunt'||sp.type==='rebel')?'oce':'lug',...FIXED[sp.type]};
+  }
+}
+async function arrive(p){
+  p.arrived=true;G.arrivals++;p.rank=G.arrivals;p.bonus=[6,4,2,0,0,0][p.rank-1];
+  renderAll();
+  await presentCard(p,{cat:'lug',icon:'🏝️',t:'¡Tierra Prometida!',r:'1 Nefi 18',final:true,fx:{},
+    x:`La caravana llega a la costa y pisa tierra firme. Llegaste en el lugar ${p.rank}.`,
+    note:'En este juego imaginamos la Tierra Prometida en la península de Baja California; es una suposición del juego, no una afirmación histórica.',
+    extra:p.bonus?[['gain',`🏆 +${p.bonus} puntos de llegada`]]:[['info','Sin puntos de llegada']]});
+}
+
+/* ---------- barco ---------- */
+function shipStatus(p){
+  const defW=Math.max(0,10-p.wood),resNeeded=defW*2;
+  return{ok:p.tool>=5&&p.fe>=5&&p.res>=resNeeded,defW,resNeeded};
+}
+async function tryShip(p){
+  const s=shipStatus(p);if(!s.ok)return false;
+  const useW=Math.min(10,p.wood);p.wood-=useW;p.res-=s.resNeeded;p.tool-=5;p.ship=true;p.done.add(YARD_AT);
+  const extra=[['loss',`−${useW} 🪵 Madera`],['loss','−5 🔨 Herramientas']];
+  if(s.resNeeded)extra.push(['loss',`−${s.resNeeded} 🧺 Recursos (por Madera faltante)`]);
+  await presentCard(p,{cat:'con',icon:'🚢',t:'¡El barco está listo!',r:'1 Nefi 18',x:'Nefi y su familia terminan el barco según las instrucciones del Señor. Desde el próximo turno podrás zarpar.',fx:{},extra},0);
+  return true;
+}
+
+/* ---------- turnos ---------- */
+async function beginTurn(skipUpkeep=false){
+  if(G.over)return;
+  const p=cur();
+  if(p.arrived)return advance();
+  renderAll();
+  if(!skipUpkeep){
+    if(p.skip>0){
+      p.skip--;log(`${nm(p)} pierde su turno.`);toast(`${p.name} pierde su turno`);renderPlayers();await sleep(1200);return advance();
+    }
+    await upkeep(p);
+  }
+  G.busy=false;renderActions();
+}
+function advance(){
+  if(allArrived())return endGame();
+  const p=cur();p.consulted=false;p.again=false;
+  G.cur=(G.cur+1)%G.players.length;
+  beginTurn();
+}
+function endTurn(){
+  G.busy=false;
+  if(allArrived())return endGame();
+  const p=cur();
+  if(p.again&&!p.arrived){p.again=false;log(`${nm(p)} tira otra vez.`);toast('¡Tiras otra vez!');return beginTurn(true);}
+  advance();
+}
+async function upkeep(p){
+  let need=(p.bigFamily?1:0)+(p.bowBroken?1:0);
+  if(!need)return;
+  const had=p.food;p.food=Math.max(0,p.food-need);
+  let msg=`Consumo de la caravana: −${had-p.food} 🍖`;
+  if(had<need){p.unity=Math.max(0,p.unity-1);msg+=' · Hambre: −1 Unidad';sfx('bad');}
+  log(`${nm(p)} · ${msg}`);toast(msg);renderPlayers();await sleep(900);
+}
+function renderActions(){
+  const p=cur(),box=$('#actions');
+  box.innerHTML='';renderPlayers();renderTurn();placeTokens();
+  const btn=(t,f,cls='btn',dis=false)=>{const b=el('button',cls,t);b.disabled=dis||G.busy;b.addEventListener('click',()=>act(f));box.appendChild(b);return b;};
+  if(p.pos===PLATES_AT&&!p.done.has(PLATES_AT)){
+    setHint('Estás en Jerusalén por las planchas. ¡Inténtalo!');
+    const lab=el('label','offer');lab.innerHTML=`<input type="checkbox" id="offer" ${p.res<2?'disabled':''}> Ofrecer 2 🧺 Recursos (+1 a la tirada)`;box.appendChild(lab);
+    btn('📜 Intentar obtener las planchas',()=>actPlates($('#offer').checked));
+    return;
+  }
+  if(p.pos===YARD_AT&&!p.ship){
+    setHint('Trabaja en el barco hasta reunir todo lo necesario.');
+    btn('🔨 Trabajar en el barco',actYard);
+    if(p.fe<5)btn('🙏 Orar (+1 Fe)',actPray,'btn ghost');
+    return;
+  }
+  setHint(p.bowBroken?'Tu arco está roto: fabrica uno nuevo o sigue avanzando.':'Tira el dado para avanzar.');
+  btn('🎲 Tirar dado',actRoll);
+  if(p.liahona&&!p.consulted)btn('🧭 Consultar la Liahona',actLiahona,'btn ghost');
+  if(p.bowBroken){
+    const ok=p.wood>=1&&p.tool>=1;
+    btn('🏹 Fabricar nuevo arco (1 🪵 + 1 🔨)',actBow,'btn ghost',!ok);
+    if(!ok)setHint('Necesitas 1 Madera y 1 Herramienta para un nuevo arco.');
+  }
+}
+async function act(fn){
+  if(G.busy||G.over)return;
+  G.busy=true;renderActions();
+  try{await fn();}catch(e){console.error(e);G.busy=false;renderActions();}
+}
+function cont(p){G.busy=false;if(p.arrived)endTurn();else renderActions();}
+async function actRoll(){
+  const p=cur(),v=rnd(6);
+  setHint('El dado rueda…');await dock.roll(v);
+  setHint(`${p.name} sacó ${v}.`);log(`${nm(p)} sacó 🎲 ${v}.`);
+  await sleep(350);await moveForward(p,v,0);endTurn();
+}
+async function actLiahona(){
+  const p=cur();p.consulted=true;
+  const mod=p.fe<=2?-1:p.fe>=6?1:0;
+  await presentCard(p,{cat:'dir',icon:'🧭',t:'Consultas la Liahona',r:'1 Nefi 16',
+    x:'La esfera funciona de acuerdo con la fe y la diligencia de la familia. Fe 0–2: penalización. Fe 3–5: normal. Fe 6 o más: bonificación.',
+    table:LIAHONA_TABLE,mod,modNote:mod>0?'Fe alta':mod<0?'Fe baja':''},0);
+  cont(p);
+}
+async function actBow(){
+  const p=cur(),mod=p.role.id==='nefi'?1:0;
+  await presentCard(p,{cat:'con',icon:'🏹',t:'Nefi fabrica un nuevo arco',r:'1 Nefi 16',
+    x:'Lo intentas con madera y una herramienta. Con 4–6 el arco queda listo; si falla, inténtalo de nuevo.',
+    table:BOW_TABLE,mod,modNote:'Arco de Nefi'},0);
+  cont(p);
+}
+async function actPlates(offer){
+  const p=cur();
+  let mod=Math.min(p.platesBonus,2);const notes=[];
+  if(mod)notes.push('nuevo camino/ayuda');
+  if(offer&&p.res>=2){p.res-=2;mod+=1;notes.push('ofrenda');log(`${nm(p)} ofrece 2 Recursos.`);}
+  p.platesBonus=0;renderPlayers();
+  await presentCard(p,{cat:'des',icon:'📜',t:'Las planchas de Labán',r:'1 Nefi 3–4',
+    x:'Nefi regresa a Jerusalén guiado por el Espíritu, sin saber de antemano lo que debía hacer. Tira el dado.',
+    table:PLATES_TABLE,mod,modNote:notes.join(' + ')},0);
+  endTurn();
+}
+async function actYard(){
+  const p=cur();
+  const base=draw('con');
+  await presentCard(p,{cat:'con',icon:'🔨',t:base.t,r:base.r,x:base.x+' Además trabajas en el barco.',fx:{...base.fx,wood:(base.fx.wood||0)+2,tool:(base.fx.tool||0)+1}},0);
+  const built=await tryShip(p);
+  if(!built){
+    const s=shipStatus(p),miss=[];
+    if(s.defW)miss.push(`${s.defW} Madera`);if(p.tool<5)miss.push(`${5-p.tool} Herramienta${5-p.tool>1?'s':''}`);if(p.fe<5)miss.push(`${5-p.fe} Fe`);
+    if(miss.length)toast('Aún falta: '+miss.join(', '));
+  }
+  endTurn();
+}
+async function actPray(){
+  const p=cur();
+  await presentCard(p,{cat:'fe',icon:'🙏',t:'Oras por guía',r:'1 Nefi 18',x:'Nefi se retira a orar y recibe fortaleza para continuar con la obra.',fx:{fe:1}},0);
+  endTurn();
+}
+
+/* ---------- fin ---------- */
+function score(p){return p.fe*2+p.food+p.res+p.tool+p.wood+p.unity*2+p.exp*2+p.bonus+(p.plates?3:0);}
+async function endGame(){
+  if(G.over)return;G.over=true;
+  await sleep(300);
+  const order=[...G.players].sort((a,b)=>score(b)-score(a));
+  const ov=el('div','overlay');
+  ov.innerHTML=`<div class="results"><h2>¡Llegaron a la Tierra Prometida!</h2><p class="sub">Gana quien llegue con más Fe, alimentos, recursos y unidad, no solo quien llegue primero.</p>
+   ${order.map((p,i)=>`<div class="rank ${i===0?'first':''}"><span class="n">${i+1}</span><div><b style="color:${p.color}">${p.role.e} ${esc(p.name)}</b><small>Fe ${p.fe}×2 · Unidad ${p.unity}×2 · Exp ${p.exp}×2 · 🍖 ${p.food} · 🧺 ${p.res} · 🔨 ${p.tool} · 🪵 ${p.wood} · llegada +${p.bonus}${p.plates?' · 📜 +3':''}</small></div><span class="pt">${score(p)}</span></div>`).join('')}
+   <div class="actions-row"><button class="btn" id="again">Jugar otra vez</button><button class="btn ghost" id="chg">Cambiar jugadores</button><button class="btn ghost" id="close">Ver tablero</button></div></div>`;
+  document.body.appendChild(ov);
+  if(!RM){const cols=['#E2B24C','#D0503F','#3AB0D8','#4FBF86','#9A8CF0','#F15BB5'],box=$('.results',ov);
+    for(let i=0;i<46;i++){const c=el('i','confetti');c.style.left=Math.random()*100+'%';c.style.background=cols[i%cols.length];c.style.animationDuration=(2.4+Math.random()*2.4)+'s';c.style.animationDelay=Math.random()*1.2+'s';box.appendChild(c);}}
+  sfx('win');
+  $('#again',ov).onclick=()=>restart(true);
+  $('#chg',ov).onclick=()=>restart(false);
+  $('#close',ov).onclick=()=>ov.remove();
+}
+
+/* ---------- reglas ---------- */
+function showRules(){
+  const ov=el('div','overlay');
+  ov.innerHTML=`<div class="rules"><h2>Reglas</h2>
+  <p>Guía a tu familia desde Jerusalén hasta la Tierra Prometida. Llegar primero ayuda, pero gana quien llegue con la mejor puntuación.</p>
+  <h3>Tu turno</h3><ul><li>Tira el dado y avanza. Los <b>hitos</b> (círculos grandes) son lugares clave de la historia: si caes exactamente en uno, vives el evento completo; si pasas de largo, se resuelve una carta de paso según tu Fe, Unidad u otra cualidad.</li><li>La única parada obligatoria es el astillero: sin barco no se puede zarpar.</li>
+  <li>Cada casilla activa una carta o un evento. Verde: ganas. Rojo: desafío. Dorado: dirección. Violeta: fe. Celeste: océano.</li></ul>
+  <h3>Recursos</h3><ul><li>❤️ Fe, 🍖 Alimentos, 🧺 Recursos, 🪵 Madera, 🔨 Herramientas, 👨‍👩‍👧‍👦 Unidad y ⭐ Experiencia.</li>
+  <li>Si no puedes pagar el consumo de alimentos, la caravana pasa hambre y pierdes 1 de Unidad.</li></ul>
+  <h3>Momentos clave</h3><ul>
+  <li><b>Las planchas:</b> si caes en Jerusalén, intentas obtenerlas con el dado cada turno (puedes ofrecer 2 Recursos para sumar 1). Si pasas de largo, con Fe 6 o más las obtienes; con menos, te escondes en una roca y pierdes un turno. Valen 3 puntos al final.</li>
+  <li><b>Ismael:</b> su familia se une, pero cada turno consumes 1 Alimento extra.</li>
+  <li><b>La Liahona:</b> una vez por turno puedes consultarla. Con Fe 6 o más funciona mejor; con Fe 2 o menos, peor.</li>
+  <li><b>El arco roto:</b> no obtienes alimentos y consumes 1 extra. Se arregla con 1 Madera y 1 Herramienta (4–6 en el dado).</li>
+  <li><b>El barco:</b> necesitas 10 Madera, 5 Herramientas y 5 de Fe. Cada 2 Recursos pueden cubrir 1 Madera que falte.</li></ul>
+  <h3>Puntuación final</h3><p>Fe ×2, Unidad ×2, Experiencia ×2, más Alimentos, Recursos, Herramientas y Madera sobrantes. Llegar de primero suma 6; segundo, 4; tercero, 2.</p>
+  <p class="muted" style="font-size:14px">Baja California es la geografía imaginaria del juego, no una afirmación histórica.</p>
+  <p style="margin-top:14px"><button class="btn" id="rOk">Entendido</button></p></div>`;
+  document.body.appendChild(ov);
+  $('#rOk',ov).onclick=()=>ov.remove();
+}
+
+/* ---------- configuración ---------- */
+let CFG={n:3,players:[]};
+function showSetup(){
+  RUN++;
+  document.querySelectorAll('.overlay').forEach(o=>o.remove());
+  $('#game').hidden=true;$('#setup').hidden=false;
+  const s=$('#setup');
+  s.innerHTML=`
+   <div class="route">${REGIONS.map(r=>`<div style="--c:${r.c}"><i>${r.e}</i>${r.n}</div>`).join('')}</div>
+   <h1>El viaje a la Tierra Prometida</h1>
+   <p class="era">Jerusalén, hacia el año 600 a. C.</p>
+   <p class="lead">Un juego de mesa de aventura, estrategia y azar basado en 1 Nefi. Cada jugador elige un figurín de la historia y guía a su familia a través del desierto y el océano.</p>
+   <h3>¿Cuántos jugadores?</h3>
+   <div class="seg" id="seg">${[2,3,4,5,6].map(n=>`<button aria-pressed="${n===CFG.n}" data-n="${n}">${n}</button>`).join('')}</div>
+   <div id="rows"></div>
+   <div class="actions-row"><button class="btn big" id="go">Comenzar el viaje</button><button class="btn ghost big" id="rl">Ver reglas</button></div>
+   <p class="note">Baja California es la geografía imaginaria del juego, no una afirmación histórica.</p>`;
+  const buildRows=()=>{
+    while(CFG.players.length<6){const i=CFG.players.length;CFG.players.push({name:'Jugador '+(i+1),role:ROLES[i].id});}
+    $('#rows').innerHTML=CFG.players.slice(0,CFG.n).map((p,i)=>{
+      const r=ROLES.find(x=>x.id===p.role);
+      return`<div class="prow" style="--c:${COLORS[i]}"><span class="dot">${r.e}</span>
+        <input data-i="${i}" class="nm" value="${esc(p.name)}" maxlength="16" aria-label="Nombre del jugador ${i+1}">
+        <select data-i="${i}" class="rl" aria-label="Figurín del jugador ${i+1}">${ROLES.map(x=>`<option value="${x.id}" ${x.id===p.role?'selected':''}>${x.e} ${x.n}</option>`).join('')}</select>
+        <div class="rd">${esc(r.d)}</div></div>`;
+    }).join('');
+    document.querySelectorAll('.nm').forEach(inp=>inp.oninput=()=>{CFG.players[+inp.dataset.i].name=inp.value;});
+    document.querySelectorAll('.rl').forEach(sel=>sel.onchange=()=>{
+      const i=+sel.dataset.i,old=CFG.players[i].role,nw=sel.value;
+      const other=CFG.players.slice(0,CFG.n).findIndex((q,k)=>k!==i&&q.role===nw);
+      if(other>=0)CFG.players[other].role=old;
+      CFG.players[i].role=nw;buildRows();
+    });
+  };
+  buildRows();
+  document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{
+    CFG.n=+b.dataset.n;
+    document.querySelectorAll('#seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+    const used=new Set(CFG.players.slice(0,CFG.n).map(p=>p.role));
+    CFG.players.slice(0,CFG.n).forEach((p,i)=>{ if(CFG.players.slice(0,i).some(q=>q.role===p.role)){p.role=ROLES.find(r=>!used.has(r.id)).id;used.add(p.role);} });
+    buildRows();
+  });
+  $('#rl').onclick=showRules;
+  $('#go').onclick=()=>startGame();
+}
+function startGame(){
+  const cfgs=CFG.players.slice(0,CFG.n).map((p,i)=>({name:(p.name||'Jugador '+(i+1)).trim()||'Jugador '+(i+1),role:p.role}));
+  G={players:cfgs.map(newPlayer),cur:0,arrivals:0,busy:false,over:false,log:[]};
+  $('#setup').hidden=true;$('#game').hidden=false;
+  $('#legend').innerHTML=REGIONS.map(r=>`<span class="pill" style="--c:${r.c}"><i></i>${r.n}</span>`).join('');
+  $('#keys').innerHTML=[['gain','Ganas'],['bad','Desafío'],['dir','Dirección'],['fe','Fe'],['oce','Océano']].map(([k,t])=>`<span><i style="--c:${NODECOL[k]}"></i>${t}</span>`).join('')+'<span>◎ Hito: caer = evento completo · pasar = carta de paso</span>';
+  drawBoard();
+  const dd=$('#dockdie');dd.innerHTML='';dock=makeDie(80);dd.appendChild(dock.el);
+  log('¡Comienza el viaje! La caravana sale de Jerusalén.');
+  placeTokens();
+  beginTurn();
+}
+
+/* ---------- eventos globales ---------- */
+$('#bRules').onclick=showRules;
+$('#bMaps').onclick=e=>{MAPS_ON=!MAPS_ON;const g=$('#bgmaps');if(g)g.style.display=MAPS_ON?'':'none';e.currentTarget.textContent='Mapas: '+(MAPS_ON?'sí':'no');e.currentTarget.setAttribute('aria-pressed',MAPS_ON);};
+$('#bSound').onclick=e=>{MUTE=!MUTE;e.currentTarget.textContent='Sonido: '+(MUTE?'no':'sí');e.currentTarget.setAttribute('aria-pressed',MUTE);};
+function restart(same){
+  RUN++;document.querySelectorAll('.overlay').forEach(o=>o.remove());
+  if(same&&CFG.players.length)startGame();else showSetup();
+}
+$('#bNew').onclick=()=>{
+  if(document.querySelector('.overlay'))return;
+  const ov=el('div','overlay');
+  ov.innerHTML=`<div class="rules"><h2>Nueva partida</h2><p>Se perderá el progreso de la partida actual.</p><div class="actions-row"><button class="btn" id="rSame">Mismos jugadores</button><button class="btn ghost" id="rNew">Cambiar jugadores</button><button class="btn ghost" id="rNo">Cancelar</button></div></div>`;
+  document.body.appendChild(ov);
+  $('#rSame',ov).onclick=()=>restart(true);
+  $('#rNew',ov).onclick=()=>restart(false);
+  $('#rNo',ov).onclick=()=>ov.remove();
+};
+$('#bTheme').onclick=e=>{const r=document.documentElement,n=r.dataset.theme==='dark'?'light':'dark';r.dataset.theme=n;e.currentTarget.textContent='Tema: '+(n==='dark'?'noche':'papiro');};
+showSetup();
+})();
+</script>
+</body>
+</html>
